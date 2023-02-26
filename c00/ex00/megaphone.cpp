@@ -9,7 +9,7 @@ int main(int argc, char* argv[]) {
     }
 
     for (int i = 1; i < argc; ++i) {
-        std::string arg(argv[i]);
+        std::string arg = argv[i];
         for (std::string::iterator it = arg.begin(); it != arg.end(); ++it) {
             *it = std::toupper(*it);
         }
