@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -pedantic
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
 
 TARGET := megaphone
 
