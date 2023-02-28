@@ -1,39 +1,5 @@
 #include "PhoneBook.hpp"
 #include "Contact.hpp"
-#include <iostream>
-#include <string>
-#include <cctype>
-#include <sstream>
-#include <iomanip>
-
-void displayContacts(const PhoneBook& phoneBook)
-{
-    std::cout << std::setw(10) << std::right << "Index"
-              << " | " << std::setw(10) << std::right << "First Name"
-              << " | " << std::setw(10) << std::right << "Last Name"
-              << " | " << std::setw(10) << std::right << "Nickname" << std::endl;
-    
-    for (int i = 1; i <= phoneBook.getNumberOfContacts(); i++)
-    {
-        Contact contact = phoneBook.getContact(i);
-        std::string firstName = contact.getFirstName();
-        std::string lastName = contact.getLastName();
-        std::string nickname = contact.getNickname();
-
-        // Truncate the strings if they are too long
-        if (firstName.length() > 10)
-            firstName = firstName.substr(0, 9) + ".";
-        if (lastName.length() > 10)
-            lastName = lastName.substr(0, 9) + ".";
-        if (nickname.length() > 10)
-            nickname = nickname.substr(0, 9) + ".";
-        
-        std::cout << std::setw(10) << std::right << i
-                  << " | " << std::setw(10) << std::right << firstName
-                  << " | " << std::setw(10) << std::right << lastName
-                  << " | " << std::setw(10) << std::right << nickname << std::endl;
-    }
-}
 
 std::string getInput(const std::string& prompt)
 {
@@ -97,7 +63,7 @@ int main()
 				std::cout << "No contact saved in PhoneBook" << std::endl;
 				continue ;
 			}
-			displayContacts(phoneBook);
+			phoneBook.displayAllContacts();
             std::cout << "Enter Index number (0 to return): ";
             std::getline(std::cin, searchIndex);
             std::istringstream iss(searchIndex);

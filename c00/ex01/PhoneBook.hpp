@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <cctype>
+#include <sstream>
+#include <iomanip>
 #include "Contact.hpp"
 
 class PhoneBook
@@ -15,6 +18,7 @@ public:
     Contact getContact(int index) const;
     int getNumberOfContacts() const;
     void showContact(int index) const;
+    void displayAllContacts() const;
 
 private:
     Contact _contacts[8];
