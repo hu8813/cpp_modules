@@ -2,28 +2,23 @@
 #include "HumanB.hpp"
 #include "HumanA.hpp"
 
-int main(){
-        HumanA aHumanA("HumanA");
-        aHumanA.attack();
-        Weapon gun = Weapon("Gun");
-        aHumanA.setWeapon(gun);
-        aHumanA.attack();
-        gun.setType("another type gun");
-        aHumanA.attack();
+int main()
+{
+	{
+		Weapon club = Weapon("crude spiked club");
 
-        Weapon laser = Weapon("Laser");
-        HumanA ai("AI", laser);
-        ai.attack();
-        ai.setWeapon(laser);
-        ai.attack();
-        laser.setType("another type laser");
-        ai.attack();
+		HumanA bob("Bob", club);
+		bob.attack();
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	{
+		Weapon club = Weapon("crude spiked club");;
 
-		HumanB bob("Bob");
-		Weapon drone = Weapon("Drone");;
-		bob.attack();
-        bob.setWeapon(drone);
-		bob.attack();
-		drone.setType("another type drone");
-		bob.attack();
+		HumanB jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+		club.setType("some other type of club");
+		jim.attack();
+	}
 }
