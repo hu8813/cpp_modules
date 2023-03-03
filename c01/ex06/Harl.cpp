@@ -8,7 +8,6 @@ level_to_index["WARNING"] = 3;
 level_to_index["ERROR"] = 4;
     std::map<std::string, void (Harl::*)()>::const_iterator it = funcs_.find(level);
     if (it != funcs_.end()) {
-        //(this->*(it->second))();
         int index = level_to_index[level];
         switch (index)
         {
