@@ -3,7 +3,8 @@ CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
 
 TARGET := replace
 
-SRCS := main.cpp
+SRCS := main.cpp \
+		Replace.cpp
 
 OBJS := $(SRCS:.cpp=.o)
 
