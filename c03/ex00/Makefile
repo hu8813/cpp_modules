@@ -1,9 +1,11 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
 
-TARGET := megaphone
+TARGET := claptrap
 
-SRCS := megaphone.cpp
+SRCS := main.cpp \
+		ClapTrap.cpp
+
 OBJS := $(SRCS:.cpp=.o)
 
 .PHONY: all clean fclean re
