@@ -56,6 +56,11 @@ int main()
     }
     else if (command == "SEARCH")
     {
+        if (index == 0)
+        {
+            std::cout << "Nothing in PhoneBook. First add some contacts" << std::endl << std::endl;
+            continue;
+        }
         while (index != 0)
         {
         if (    phoneBook.getNumberOfContacts() == 0)
@@ -64,18 +69,36 @@ int main()
 				continue ;
 			}
 			phoneBook.displayAllContacts();
-            std::cout << "Enter Index number (0 to return): ";
-            std::getline(std::cin, searchIndex);
+            std::cout << std::endl << "Enter Index number (0 to return): ";
+            if (!std::getline(std::cin, searchIndex)) {
+            std::cout << std::endl << "EOF detected. Exiting." << std::endl;
+            break;
+            }
+        
             std::istringstream iss(searchIndex);
-            int index;
-            if (!(iss >> index))
-            {
-                std::cout << "Error: invalid index number" << std::endl;
+
+            bool isDigits = true;
+            for (size_t i = 0; i < searchIndex.length(); ++i) {
+                if (!std::isdigit(searchIndex[i])) {
+                    isDigits = false;
+                    break;
+                }
+            }
+             if (!isDigits) {
+                std::cout << std::endl << "Error: invalid index number" << std::endl;
                 continue;
             }
-            if (index == 0)
+            int index;
+
+            if (!(iss >> index))
+            {
+                std::cout << std::endl << "Error: invalid index number" << std::endl;
+                continue;
+            }
+            if (std::cin.fail() || std::cin.bad() || std::cin.eof() || index == 0)
                 break;
-			phoneBook.showContact(index);
+        
+        phoneBook.showContact(index);
         }
     }
     else if (command == "EXIT")

@@ -73,10 +73,10 @@ void PhoneBook::showContact(int index) const
     }
 
     Contact contact = _contacts[index - 1];
-    std::cout << "Contact #" << index << std::endl;
+    std::cout  << std::endl << "Contact #" << index << std::endl;
     std::cout << "First Name: " << contact.getFirstName() << std::endl;
     std::cout << "Last Name: " << contact.getLastName() << std::endl;
     std::cout << "Nickname: " << contact.getNickname() << std::endl;
     std::cout << "Phone Number: " << contact.getPhoneNumber() << std::endl;
-    std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl;
+    std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl << std::endl;
 }

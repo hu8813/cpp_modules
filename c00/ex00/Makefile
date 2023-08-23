@@ -1,16 +1,16 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
 
-TARGET := megaphone
+NAME := megaphone
 
 SRCS := megaphone.cpp
 OBJS := $(SRCS:.cpp=.o)
 
 .PHONY: all clean fclean re
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJS)
+$(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 %.o: %.cpp

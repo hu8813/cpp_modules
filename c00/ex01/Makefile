@@ -1,19 +1,17 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
 
-TARGET := phonebook
+NAME := phonebook
 
-SRCS := main.cpp \
-		Contact.cpp \
-		PhoneBook.cpp
+SRCS := main.cpp 		Contact.cpp 		PhoneBook.cpp
 		
 OBJS := $(SRCS:.cpp=.o)
 
 .PHONY: all clean fclean re
 
-all: $(TARGET)
+all: $(NAME)
 
-$(TARGET): $(OBJS)
+$(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 %.o: %.cpp
