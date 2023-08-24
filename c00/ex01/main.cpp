@@ -37,7 +37,7 @@ int main()
     Contact contacts;
     PhoneBook phoneBook;
     std::string searchIndex;
-
+    static int index;
 
     std::cout << COLOR_GREEN << "Welcome to your phone book!" << COLOR_RESET << std::endl;
   
@@ -63,10 +63,8 @@ int main()
         std::string nickname = getInput("Enter nickname: ");
         std::string phoneNumber = getInput("Enter phone number: ");
         std::string darkestSecret = getInput("Enter darkest secret: ");
-        //index = (index + 1) % 8  ;
-        //if (index == 0)
-        //    index = 1;
-        contacts = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret, phoneBook.getNumberOfContacts());
+        contacts = Contact(firstName, lastName, nickname, phoneNumber, darkestSecret, index);
+        index = (index + 1) % 8  ;
         phoneBook.addContact(contacts);
     }
     else if (command == "SEARCH")

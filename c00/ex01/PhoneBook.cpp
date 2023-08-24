@@ -38,10 +38,10 @@ void PhoneBook::addContact(Contact& contact)
     // If there are less than 8 contacts, add the new contact to the next index
 
         int index = contact.getIndex();
+        _contacts[index] = contact;
         index = ((index + 1) % 8);
         contact.setIndex(index);
-        _contacts[index] = contact;
-        if (_numberOfContacts != 8)
+        if (_numberOfContacts < 8)
         _numberOfContacts++;
 
     
@@ -64,13 +64,12 @@ int PhoneBook::getNumberOfContacts() const
 
 void PhoneBook::showContact(int index) const
 {
-    if (index < 1 || index > _numberOfContacts + 1 || index > _maxContacts + 1)
+    if (index < 1 || index > _numberOfContacts || index > _maxContacts )
     {
         std::cout << COLOR_RED << "Error: index out of range" << COLOR_RESET << std::endl;
         return;
     }
-    index = index - 1;
-    Contact contact = _contacts[index];
+    Contact contact = _contacts[index - 1];
     std::cout  << std::endl << "Contact #" << index << std::endl;
     std::cout << "First Name: " << contact.getFirstName() << std::endl;
     std::cout << "Last Name: " << contact.getLastName() << std::endl;
