@@ -8,6 +8,10 @@
 #include <iomanip>
 #include "Contact.hpp"
 
+const std::string COLOR_RESET = "\x1B[0m";
+const std::string COLOR_RED = "\x1B[31m";
+const std::string COLOR_GREEN = "\x1B[32m";
+
 class PhoneBook
 {
 public:
@@ -21,7 +25,8 @@ public:
     void displayAllContacts() const;
 
 private:
-    Contact _contacts[8];
+    const static int _maxContacts = 8;
+    Contact _contacts[_maxContacts];
     int _numberOfContacts;
 };
 

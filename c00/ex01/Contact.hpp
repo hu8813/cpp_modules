@@ -9,14 +9,10 @@ class Contact
 public:
     // Constructors
     Contact();
-    Contact(const Contact& copy);
     Contact(std::string firstName, std::string lastName, std::string nickname, std::string phoneNumber, std::string darkestSecret, int index);
 
     // Destructor
     ~Contact();
-
-    // Operators
-    Contact& operator=(const Contact& assign);
 
     // Getters / Setters
     std::string getFirstName() const;

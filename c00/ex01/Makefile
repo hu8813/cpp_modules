@@ -21,6 +21,6 @@ clean:
 	$(RM) $(OBJS)
 
 fclean: clean
-	$(RM) $(TARGET)
+	$(RM) $(NAME)
 
 re: fclean all
