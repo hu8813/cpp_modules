@@ -1,24 +1,33 @@
 #include "Harl.hpp"
 
 void Harl::complain(std::string level) {
-    std::map<std::string, void (Harl::*)()>::const_iterator it = funcs_.find(level);
-    if (it != funcs_.end()) {
-        (this->*(it->second))();
+    std::string	levels[4] = {
+			"DEBUG",
+			"INFO",
+			"WARNING",
+			"ERROR"
+	};  
+    void (Harl::*funcs[4]) (void) = {
+			&Harl::debug,
+			&Harl::info,
+			&Harl::warning,
+			&Harl::error
+	};
+    
+    bool levelFound = false;
+
+    for (int i = 0; i < 4; i++) {
+        if (level == levels[i]) {
+            (this->*funcs[i])();
+            levelFound = true;
+            break;
+        }
     }
-    else {
-        std::cout << "Unknown complaint level: " << level << std::endl;
+
+    if (!levelFound) {
+        std::cout << "Unknown complaint level " << level << std::endl;
     }
 }
-
-std::map<std::string, void (Harl::*)()> Harl::init_funcs() {
-    std::map<std::string, void (Harl::*)()> funcs;
-    funcs["DEBUG"] = &Harl::debug;
-    funcs["INFO"] = &Harl::info;
-    funcs["WARNING"] = &Harl::warning;
-    funcs["ERROR"] = &Harl::error;
-    return funcs;
-}
-
 
 void Harl::debug() {
 	std::cout << "[ DEBUG ]" << std::endl;
@@ -49,7 +58,6 @@ void Harl::error() {
 
 Harl::Harl()
 {
-	funcs_ = init_funcs();
 }
 
 Harl::~Harl()

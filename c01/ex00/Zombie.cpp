@@ -28,14 +28,6 @@ Zombie::~Zombie()
 }
 
 
-// Operators
-Zombie & Zombie::operator=(const Zombie &assign)
-{
-	_name = assign.getName();
-	return *this;
-}
-
-
 // Getters / Setters
 std::string Zombie::getName() const
 {

@@ -16,9 +16,6 @@ class Zombie
 		// Destructor
 		~Zombie();
 		
-		// Operators
-		Zombie & operator=(const Zombie &assign);
-		
 		// Getters / Setters
 		std::string getName() const;
 

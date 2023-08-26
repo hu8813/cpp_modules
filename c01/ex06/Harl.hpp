@@ -16,9 +16,6 @@ private:
     void info();
     void warning();
     void error();
-	//static const std::map<std::string, void (Harl::*)()> init_funcs();
-	std::map<std::string, void (Harl::*)()> init_funcs();
 
-	std::map<std::string, void (Harl::*)()> funcs_;
 };
-#endif // HARL_HPP
+#endif 

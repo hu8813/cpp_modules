@@ -27,14 +27,6 @@ Weapon::~Weapon()
 }
 
 
-// Operators
-Weapon & Weapon::operator=(const Weapon &assign)
-{
-	_type = assign.getType();
-	return *this;
-}
-
-
 // Getters / Setters
 std::string Weapon::getType() const
 {

@@ -19,9 +19,6 @@ class HumanA
 		// Destructor
 		~HumanA();
 		
-		// Operators
-		HumanA & operator=(const HumanA &assign);
-		
 		// Getters / Setters
 		std::string getName() const;
 		

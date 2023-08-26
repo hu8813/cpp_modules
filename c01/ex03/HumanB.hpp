@@ -18,9 +18,7 @@ class HumanB
 		// Destructor
 		~HumanB();
 		
-		// Operators
-		HumanB & operator=(const HumanB &assign);
-		
+	
 		// Getters / Setters
 		std::string getName() const;
 		

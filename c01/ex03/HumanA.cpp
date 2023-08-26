@@ -45,13 +45,6 @@ HumanA::~HumanA()
 	std::cout << "\e[0;31mDestructor called of HumanA\e[0m" << std::endl;
 }
 
-// Operators
-HumanA &HumanA::operator=(const HumanA &assign)
-{
-	_name = assign.getName();
-	return (*this);
-}
-
 // Getters / Setters
 std::string HumanA::getName() const
 {

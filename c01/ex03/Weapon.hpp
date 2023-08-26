@@ -15,9 +15,6 @@ class Weapon
 		// Destructor
 		~Weapon();
 		
-		// Operators
-		Weapon & operator=(const Weapon &assign);
-		
 		// Getters / Setters
 		std::string getType() const;
 		void setType(std::string type);
