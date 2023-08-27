@@ -2,11 +2,11 @@
 #define REPLACE_HPP
 
 #include <iostream>
-#include <string>
 
 class Replace {
 public:
   Replace(const std::string& filename, const std::string& s1, const std::string& s2);
+  bool check_for_error();
   void run();
 
 private:

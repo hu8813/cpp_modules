@@ -8,7 +8,18 @@ Replace::Replace(const std::string& filename, const std::string& s1, const std::
 {
 }
 
+bool Replace::check_for_error()
+{
+  std::cout << "file: " << _filename << std::endl;
+  std::cout << "s1: " << _s1 << std::endl;
+  std::cout << "s2: " << _s2 << std::endl;
+  return false;
+}
+
 void Replace::run() {
+
+ if (check_for_error())
+{
   std::ifstream infile(_filename.c_str());
   if (!infile.is_open()) {
     std::cerr << "Error: could not open file: " << _filename << std::endl;
@@ -30,6 +41,7 @@ void Replace::run() {
 
   infile.close();
   outfile.close();
+}
 }
 
 std::string Replace::replaceString(const std::string& str) const {

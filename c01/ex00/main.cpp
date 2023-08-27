@@ -19,6 +19,7 @@ zombie.randomChump("ZombieRandom");
 zombie4.announce();
 zombie5.announce();
 zombie6.announce();
+
 delete zombieptr;
 delete zombie3;
 

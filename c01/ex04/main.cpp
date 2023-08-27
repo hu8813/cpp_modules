@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <string>
 #include "Replace.hpp"
 
 int main(int argc, char **argv)
