@@ -19,7 +19,7 @@ bool Replace::check_for_error()
   return false;
   }
   if (_s2.empty() || _s2 == ""){
-    std::cout << "Warning: The string to replace was empty. The found strings have been set to empty string"<< std::endl;
+    std::cout << "Warning: The new string is empty. If any strings found they will be set to empty string."<< std::endl;
   }
   return true;
 }
@@ -54,7 +54,9 @@ void Replace::run() {
   }
   if (all_lines.find(_s1,0) == std::string::npos)
   {
-    std::cerr << "Error: String to find could not be found!" << std::endl;
+    std::cout << "Warning: String to replace could not be found!" << std::endl;
+    // outfile << all_lines;
+
     if (infile)
       infile.close();
     if (outfile)
