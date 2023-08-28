@@ -1,8 +1,7 @@
-#ifndef HUMANB_HPP
-# define HUMANB_HPP
+#pragma once
 
-# include <iostream>
-# include "Weapon.hpp"
+#include <iostream>
+#include "Weapon.hpp"
 
 class HumanB
 {
@@ -26,5 +25,3 @@ class HumanB
 		Weapon	*_weapon;
 		
 };
-
-#endif

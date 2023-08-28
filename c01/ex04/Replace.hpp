@@ -1,5 +1,4 @@
-#ifndef REPLACE_HPP
-#define REPLACE_HPP
+#pragma once
 
 #include <iostream>
 
@@ -16,5 +15,3 @@ private:
 
   std::string replaceString(const std::string& str) const;
 };
-
-#endif 

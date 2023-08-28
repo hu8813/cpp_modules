@@ -1,8 +1,7 @@
-#ifndef HUMANA_HPP
-# define HUMANA_HPP
+#pragma once
 
-# include <iostream>
-# include "Weapon.hpp"
+#include <iostream>
+#include "Weapon.hpp"
 
 class HumanA
 {
@@ -24,5 +23,3 @@ class HumanA
 		Weapon	*_weapon;
 		
 };
-
-#endif

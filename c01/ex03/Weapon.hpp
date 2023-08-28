@@ -1,7 +1,6 @@
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
+#pragma once
 
-# include <iostream>
+#include <iostream>
 
 class Weapon
 {
@@ -21,5 +20,3 @@ class Weapon
 		std::string _type;
 		
 };
-
-#endif
