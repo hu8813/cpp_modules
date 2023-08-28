@@ -1,16 +1,11 @@
 #pragma once
-#ifndef ZOMBIE_HPP
-# define ZOMBIE_HPP
-
-# include <iostream>
-# include <string>
+#include <iostream>
 
 class Zombie
 {
 	public:
 		// Constructors
 		Zombie();
-		Zombie(const Zombie &copy);
 		Zombie(const std::string &name);
 
 		// Destructor
@@ -20,7 +15,7 @@ class Zombie
 		std::string getName() const;
 
 		// Functions
-		void announce(void);
+		void 	announce(void);
 		Zombie	*newZombie(std::string name);
 		void	randomChump(std::string name);
 		void	setName(const std::string& name);
@@ -30,5 +25,3 @@ class Zombie
 		std::string _name;
 		
 };
-
-#endif

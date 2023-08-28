@@ -18,6 +18,7 @@ int main()
     std::cout << "strPtr         : " << strPtr << std::endl;
     
     // strRef can not be set to NULL because it is a reference
-
+    // &strRef = NULL;
+    
     return 0;
 }

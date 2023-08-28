@@ -8,12 +8,6 @@ HumanA::HumanA()
 	std::cout << "\e[0;33mDefault Constructor called of HumanA\e[0m" << std::endl;
 }
 
-HumanA::HumanA(const HumanA &copy)
-{
-	_name = copy.getName();
-	std::cout << "\e[0;33mCopy Constructor called of HumanA\e[0m" << std::endl;
-}
-
 HumanA::HumanA(std::string name)
 {
 	_name = name;
@@ -32,11 +26,6 @@ void HumanA::attack()
 {
 	if (_weapon != NULL)
 		std::cout << _name << " attacks with his " << _weapon->getType() << std::endl;
-}
-
-void HumanA::setWeapon(Weapon &weapon)
-{
-	_weapon = &weapon;
 }
 
 // Destructor

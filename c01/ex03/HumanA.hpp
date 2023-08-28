@@ -9,11 +9,9 @@ class HumanA
 	public:
 		// Constructors
 		HumanA();
-		HumanA(const HumanA &copy);
 		HumanA(std::string name);
 		HumanA(std::string name, Weapon &weapon);
 		void attack();
-		void setWeapon(Weapon &weapon);
 		
 		// Destructor
 		~HumanA();

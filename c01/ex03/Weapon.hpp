@@ -8,7 +8,6 @@ class Weapon
 	public:
 		// Constructors
 		Weapon();
-		Weapon(const Weapon &copy);
 		Weapon(std::string type);
 		
 		// Destructor
