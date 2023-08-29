@@ -16,7 +16,7 @@ std::string getInput(const std::string& prompt)
 {
     std::string input;
     while (true) {
-        std::cout << COLOR_GREEN << prompt << COLOR_RESET;
+        std::cout << COLOR_GREEN << prompt << COLOR_RESET << std::endl;
         if (!std::getline(std::cin, input)) {
             std::cout << COLOR_RED << "End of input reached. Exiting. " << COLOR_RESET << std::endl;
             break;
@@ -69,11 +69,6 @@ int main()
     }
     else if (command == "SEARCH")
     {
-        // if (index == 0)
-        // {
-        //     std::cout << COLOR_RED << "Nothing in PhoneBook. First add some contacts" << COLOR_RESET << std::endl << std::endl;
-        //     continue;
-        // }
         while (phoneBook.getNumberOfContacts() >= 0)
         {
         if (    phoneBook.getNumberOfContacts() == 0)
@@ -82,7 +77,7 @@ int main()
 				break ;
 			}
 			phoneBook.displayAllContacts();
-            std::cout << COLOR_GREEN << std::endl << "Enter Index number (0 to return) " << COLOR_RESET << std::endl;
+            std::cout << COLOR_GREEN << std::endl << "Enter Index number (to return to previous Menu, enter 0) " << COLOR_RESET << std::endl;
             if (!std::getline(std::cin, searchIndex)) {
             std::cerr << COLOR_RED << std::endl << "EOF detected. Exiting." << COLOR_RESET << std::endl;
             break;

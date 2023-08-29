@@ -11,7 +11,13 @@ int main(int argc, char* argv[]) {
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
         for (std::string::iterator it = arg.begin(); it != arg.end(); ++it) {
-            *it = std::toupper(static_cast<unsigned char>(*it));
+            *it = std::toupper((*it));
+        
+        /* // alternative:
+        for (std::string::size_type j = 0; j < arg.size(); ++j) {
+             arg[j] = std::toupper((arg[j]));
+        */
+        
         }
         std::cout << arg;
     }
