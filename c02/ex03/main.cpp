@@ -16,7 +16,7 @@ int	main(void)
     Point a = Point(0, 0);
     Point b = Point(10, 30);
     Point c = Point(20, 0);
-    Point point = Point(30, 15);
+    Point point = Point(0, 0);
         
     check_bsp_result(a, b, c, point);
 

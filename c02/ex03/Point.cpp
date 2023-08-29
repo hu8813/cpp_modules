@@ -2,24 +2,18 @@
 #include "Point.hpp"
 
 // Constructors
-Point::Point()
+Point::Point() : _x((Fixed)0), _y((Fixed)0)
 {
-	( Fixed ) this->_x = 0;
-	( Fixed ) this->_y = 0;
-	//std::cout << "\e[0;33mDefault Constructor called of Point\e[0m" << std::endl;
+	std::cout << "\e[0;33mDefault Constructor called of Point\e[0m" << std::endl;
 }
 
-Point::Point(const Point &copy)
+Point::Point(const Point &copy) : _x(copy.getX()), _y(copy.getY())
 {
-	( Fixed ) this->_x = copy.getX();
-	( Fixed ) this->_y = copy.getY();
 	//std::cout << "\e[0;33mCopy Constructor called of Point\e[0m" << std::endl;
 }
 
-Point::Point(const float x, const float y)
+Point::Point(const Fixed x, const Fixed y) : _x(x), _y(y)
 {
-	( Fixed ) this->_x = x;
-	( Fixed ) this->_y = y;
 	//std::cout << "\e[0;33mFields Constructor called of Point\e[0m" << std::endl;
 }
 
@@ -32,20 +26,23 @@ Point::~Point()
 
 
 // Operators
-Point & Point::operator=(const Point &assign)
+const Point & Point::operator=(const Point &assign)
 {
-	if ( this != &assign ) {
-	( Fixed ) this->_x = assign.getX();
-	( Fixed ) this->_y = assign.getY();
-	}
+	(void)assign;
+	// if ( this != &assign ) {
+	// this->_x = assign.getX();
+	// this->_y = assign.getY();
+	// }
 	return *this;
 }
 
 // Getters / Setters
 Fixed Point::getX() const
 {
+	//std::cout << _x << std::endl;
 	return this->_x;
 }
+
 Fixed Point::getY() const
 {
 	return this->_y;

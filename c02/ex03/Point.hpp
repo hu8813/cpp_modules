@@ -11,13 +11,13 @@ class Point
 		// Constructors
 		Point();
 		Point(const Point &copy);
-		Point(const float x, const float y);
+		Point(const Fixed x, const Fixed y);
 		
 		// Destructor
 		~Point();
 		
 		// Operators
-		Point & operator=(const Point &assign);
+		const Point & operator=(const Point &assign);
 		
 		// Getters / Setters
 		Fixed getX() const;

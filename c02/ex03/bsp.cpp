@@ -8,6 +8,10 @@ static Fixed   abs(Fixed x) {
 
 static  Fixed area( Point const a, Point const b, Point const c )
 {
+    // std::cout << "a.x: "<< a.getX() << std::endl;
+    // std::cout << "a.y: "<< a.getY() << std::endl;
+    // std::cout << "b.x: "<< b.getX() << std::endl;
+    // std::cout << "b.y: "<< b.getY() << std::endl;
     return ( ( ( a.getX() * ( b.getY() - c.getY() ) ) +
              ( b.getX() * ( c.getY() - a.getY() ) ) +
              ( c.getX() * ( a.getY() - b.getY() ) ) ) / 2 );
