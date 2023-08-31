@@ -23,6 +23,11 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
     Fixed   areaPBC = ( Fixed ) abs(area(point, b, c));
     Fixed   areaAPC = ( Fixed ) abs(area(a, point, c));
     Fixed   areaABP = ( Fixed ) abs(area(a, b, point));
-
+    if (areaABC == 0 || areaPBC == 0 || areaAPC == 0 || areaABP == 0)
+    return (false);
+    // std::cout << areaABC << std::endl;
+    // std::cout << areaPBC << std::endl;
+    // std::cout << areaAPC << std::endl;
+    // std::cout << areaABP << std::endl;
     return ((areaABC == (areaPBC + areaAPC + areaABP)));
 }

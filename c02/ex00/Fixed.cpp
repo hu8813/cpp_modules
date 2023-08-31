@@ -13,13 +13,6 @@ Fixed::Fixed(const Fixed &copy)
 	_rawBits = copy.getRawBits();
 }
 
-Fixed::Fixed(int number)
-{
-	std::cout << "\e[0;33mFields Constructor called\e[0m" << std::endl;
-	_rawBits = number;
-}
-
-
 // Destructor
 Fixed::~Fixed()
 {
@@ -37,7 +30,7 @@ Fixed & Fixed::operator=(const Fixed &assign)
 
 
 // Getters / Setters
-int Fixed::getRawBits() const
+int Fixed::getRawBits(void) const
 {
 	std::cout << "\e[0;32mgetRawBits member function called\e[0m" << std::endl;
 	return _rawBits;
@@ -45,5 +38,6 @@ int Fixed::getRawBits() const
 
 void Fixed::setRawBits(int const raw)
 {
+	std::cout << "\e[0;32msetRawBits member function called\e[0m" << std::endl;
 	_rawBits = raw;
 }

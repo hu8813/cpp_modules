@@ -1,4 +1,3 @@
-#include <iostream>
 #include "Fixed.hpp"
 
 int	main(void)
@@ -13,11 +12,12 @@ int	main(void)
 	std::cout << b << std::endl;
 	std::cout << Fixed::max(a, b) << std::endl;
 
-	std::cout << " a + b = "<< std::endl << a + b << std::endl;
-	std::cout << " a - b = "<< std::endl << a - b << std::endl;
-	std::cout << " a * b = "<< std::endl << a * b << std::endl;
-	std::cout << " a / b = "<< std::endl << a / b << std::endl;
-	std::cout << " minimum of a, b is = "<< Fixed::min(a, b) << std::endl;
+	std::cout << " a + b = " << a + b << std::endl;
+	std::cout << " a - b = " << a - b << std::endl;
+	std::cout << " a * b = " << a * b << std::endl;
+	std::cout << " a / b = " << a / b << std::endl;
+	std::cout << "Minimum of a, b is = "<< Fixed::min(a, b) << std::endl;
+	std::cout << "Maxumum of a, b is = "<< Fixed::max(a, b) << std::endl;
 
 	return (0);
 }

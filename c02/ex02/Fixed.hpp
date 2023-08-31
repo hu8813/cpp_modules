@@ -2,15 +2,15 @@
 # define FIXED_HPP
 
 # include <iostream>
-# include <string>
+# include <cmath>
 
 class Fixed
 {
 	public:
 		// Constructors
 		Fixed();
-		Fixed(int intNumber);
-		Fixed(float floatNumber);
+		Fixed(const int intNumber);
+		Fixed(const float floatNumber);
 		Fixed(const Fixed &copy);
 		
 		// Destructor
@@ -34,10 +34,10 @@ class Fixed
 		Fixed operator--(int); 
 		
 		// Getters / Setters
-		int getRawBits() const;
+		int getRawBits(void) const;
 		void setRawBits(int const raw);
-		int toInt() const;
-		float toFloat( void ) const;
+		int toInt(void) const;
+		float toFloat(void) const;
 
 		static Fixed & min(Fixed &a, Fixed &b);
 		static const Fixed & min(const Fixed &a, const Fixed &b);

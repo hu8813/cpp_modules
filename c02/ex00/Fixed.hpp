@@ -2,7 +2,6 @@
 # define FIXED_HPP
 
 # include <iostream>
-# include <string>
 
 class Fixed
 {
@@ -10,8 +9,7 @@ class Fixed
 		// Constructors
 		Fixed();
 		Fixed(const Fixed &copy);
-		Fixed(int number);
-		
+	
 		// Destructor
 		~Fixed();
 		
@@ -19,7 +17,7 @@ class Fixed
 		Fixed & operator=(const Fixed &assign);
 		
 		// Getters / Setters
-		int getRawBits() const;
+		int getRawBits(void) const;
 		void setRawBits(int const raw);
 		
 	private:
