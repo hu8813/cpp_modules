@@ -1,8 +1,8 @@
+#pragma once
 #ifndef DIAMONDTRAP_HPP
 # define DIAMONDTRAP_HPP
 
 # include <iostream>
-# include <string>
 # include "ScavTrap.hpp"
 # include "FragTrap.hpp"
 

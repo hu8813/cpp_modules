@@ -77,9 +77,14 @@ int ClapTrap::getAttackDamage() const
 // Methods
 void ClapTrap::attack(const std::string& target)
 {
-	if (this->_energyPoints == 0)
+	if (this->_hitPoints <= 0)
 	{
-		std::cout << this << ".ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy to attack!" << std::endl;
+		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		return ;
+	}
+	else if (this->_energyPoints <= 0)
+	{
+		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;
@@ -88,19 +93,35 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-	if (this->_energyPoints == 0)
+	if (this->_hitPoints <= 0)
+	{
+		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		return ;
+	}
+	else if (this->_energyPoints <= 0)
 	{
 		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy to take damage!" << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " takes " << amount << " points of damage!" << std::endl;
+	this->_hitPoints -= amount;
+	if (this->_hitPoints <= 0)
+	{
+		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " died!" << std::endl;
+		return ;
+	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-	if (this->_energyPoints == 0)
+	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy to repair!" << std::endl;
+		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		return ;
+	}
+	else if (this->_energyPoints <= 0)
+	{
+		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitPoints to repair!" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;

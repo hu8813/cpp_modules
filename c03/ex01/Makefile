@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP 
 
 TARGET := scavtrap
 
@@ -8,6 +8,8 @@ SRCS := main.cpp \
 		ScavTrap.cpp 
 
 OBJS := $(SRCS:.cpp=.o)
+DEPS := $(OBJS:.o=.d) 
+-include $(DEPS)
 
 .PHONY: all clean fclean re
 
@@ -17,10 +19,10 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@  
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(TARGET)

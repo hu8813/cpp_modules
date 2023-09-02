@@ -1,8 +1,8 @@
+#pragma once
 #ifndef FRAGTRAP_HPP
 # define FRAGTRAP_HPP
 
 # include <iostream>
-# include <string>
 # include "ClapTrap.hpp"
 
 class FragTrap: public ClapTrap
@@ -21,7 +21,8 @@ class FragTrap: public ClapTrap
 		FragTrap & operator=(const FragTrap &assign);
 		
 		// Methods
-		void highFivesGuys();
+		void highFivesGuys(void);
+		
 	private:
 		
 };

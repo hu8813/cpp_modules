@@ -5,19 +5,19 @@
 // Constructors
 FragTrap::FragTrap()
 {
-	this->setName("noName");
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+	_name = "noName";
+	_hitPoints = 10;
+	_energyPoints = 10;
+	_attackDamage = 0;
 	std::cout << "\e[0;33mDefault Constructor called of FragTrap\e[0m" << std::endl;
 }
 
 FragTrap::FragTrap(std::string	name)
 {
-	this->setName(name);
-	this->setHitPoints(100);
-	this->setEnergyPoints(100);
-	this->setAttackDamage(30);
+	_name = "noName";
+	_hitPoints = 10;
+	_energyPoints = 10;
+	_attackDamage = 0;
 	std::cout << "\e[0;33mDefault Constructor called of FragTrap\e[0m" << std::endl;
 }
 
