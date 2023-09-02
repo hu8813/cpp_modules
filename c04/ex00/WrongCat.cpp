@@ -27,10 +27,10 @@ WrongCat & WrongCat::operator=(const WrongCat &assign)
     return (*this);
 }
 
-void WrongCat::makeSound() const{
-    WrongAnimal::makeSound();
-    //std::cout << "Default Wrong Cat Song: Wrong Miaww!" << std::endl;
-}
+// void WrongCat::makeSound() const{
+//     WrongAnimal::makeSound();
+//     //std::cout << "Default Wrong Cat Song: Wrong Miaww!" << std::endl;
+// }
 
 std::string WrongCat::getType() const
 {

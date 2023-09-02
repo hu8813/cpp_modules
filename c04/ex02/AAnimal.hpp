@@ -1,21 +1,21 @@
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef AAnimal_HPP
+# define AAnimal_HPP
 
 # include <iostream>
 
-class Animal
+class AAnimal
 {
 	public:
 		// Constructors
-		Animal();
-		Animal(std::string type);
-		Animal(const Animal &copy);
+		AAnimal();
+		AAnimal(std::string type);
+		AAnimal(const AAnimal &copy);
 		
 		// Destructor
-		virtual ~Animal();
+		virtual ~AAnimal();
 		
 		// Operators
-		Animal & operator=(const Animal &assign);
+		AAnimal & operator=(const AAnimal &assign);
 		
 		// Getters / Setters
 		virtual std::string getType() const;

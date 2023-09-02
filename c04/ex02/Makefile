@@ -4,7 +4,7 @@ CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 TARGET := animal
 
 SRCS := main.cpp \
-		Animal.cpp \
+		AAnimal.cpp \
 		Dog.cpp \
 		Cat.cpp \
 		WrongAnimal.cpp \
