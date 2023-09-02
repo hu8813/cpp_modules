@@ -2,7 +2,6 @@
 # define CAT_HPP
 
 # include <iostream>
-# include <string>
 # include "Animal.hpp"
 # include "Brain.hpp"
 

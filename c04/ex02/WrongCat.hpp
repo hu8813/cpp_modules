@@ -2,7 +2,6 @@
 # define WRONGCAT_HPP
 
 # include <iostream>
-# include <string>
 # include "WrongAnimal.hpp"
 # include "Brain.hpp"
 
