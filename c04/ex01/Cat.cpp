@@ -14,7 +14,7 @@ Cat::Cat(std::string type)
     std::cout << "\e[0;33mDefault Constructor called of Cat\e[0m" << std::endl;
 }
 
-Cat::Cat(const Cat &copy)
+Cat::Cat(const Cat &copy): Animal(copy)
 {
     _type = copy.getType();
     this->brain = new Brain(*(copy.brain));

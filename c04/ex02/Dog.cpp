@@ -14,7 +14,7 @@ Dog::Dog(std::string type)
     std::cout << "\e[0;33mDefault Constructor called of Dog\e[0m" << std::endl;
 }
 
-Dog::Dog(const Dog &copy)
+Dog::Dog(const Dog &copy): AAnimal(copy)
 {
     _type = copy.getType();
     this->brain = new Brain(*(copy.brain));

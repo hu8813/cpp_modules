@@ -12,7 +12,7 @@ WrongCat::WrongCat(std::string type)
     std::cout << "\e[0;33mDefault Constructor called of WrongCat\e[0m" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat &copy)
+WrongCat::WrongCat(const WrongCat &copy): WrongAnimal(copy)
 {
     _type = copy.getType();
     std::cout << "\e[0;33mCopy Constructor called of WrongCat\e[0m" << std::endl;
