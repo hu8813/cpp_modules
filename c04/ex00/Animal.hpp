@@ -2,7 +2,6 @@
 # define ANIMAL_HPP
 
 # include <iostream>
-# include <string>
 
 class Animal
 {

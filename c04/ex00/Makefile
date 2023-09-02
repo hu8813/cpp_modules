@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 
 TARGET := animal
 
@@ -11,6 +11,8 @@ SRCS := main.cpp \
 		WrongCat.cpp
 
 OBJS := $(SRCS:.cpp=.o)
+DEPS := $(OBJS:.o=.d) 
+-include $(DEPS)
 
 .PHONY: all clean fclean re
 
@@ -23,7 +25,7 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(TARGET)
