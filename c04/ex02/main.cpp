@@ -63,5 +63,40 @@ int main()
     }
 
     }
+    {
+        Dog bulldog;
+        Cat mimi;
+
+        Dog &bulldogRef = bulldog;
+        Cat &mimiRef = mimi;
+
+        Dog bulldogCopy(bulldogRef);
+        Cat mimiCopy(mimiRef);
+
+        std::cout  << std::endl << "comparing Address:" << std::endl;
+
+        std::cout << "heap Address of bulldog's brain: "<< bulldog.getBrain() << std::endl;         
+        std::cout << "heap Address of bulldogCopy's brain: "<< bulldogCopy.getBrain() << std::endl;         
+
+        std::cout << "heap Address of mimi's brain: "<< mimi.getBrain() << std::endl;         
+        std::cout << "heap Address of mimiCopy's brain: "<< mimiCopy.getBrain() << std::endl;         
+        
+        bool sameValues = 1;
+        std::cout  << std::endl << "Comparing values:" << std::endl;
+        for (int i = 0; i < 100; i++)
+            if ((bulldog.getBrain())->getIdeas()[i] != (bulldogCopy.getBrain())->getIdeas()[i])
+                {
+                    std::cout << (bulldog.getBrain())->getIdeas()[i] << std::endl;
+                    std::cout << (bulldogCopy.getBrain())->getIdeas()[i] << std::endl;
+                    sameValues = 0;
+                    break;
+                }
+        
+        if (!sameValues)
+            std::cout << "Error in Copy, the values are not identic" << std::endl;
+        else
+            std::cout << "Both values are same!" << std::endl;
+
+    }
     return 0;
 }

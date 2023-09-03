@@ -20,7 +20,7 @@ Brain::Brain ( const Brain &copy ) {
 	std::string	*ideas = copy.getIdeas();
 	this->_ideas = new std::string[100];
 	for ( int i = 0; i < 100; i++ )
-		this->_ideas[i] = ideas[i] + " copy";
+		this->_ideas[i] = ideas[i];
 	std::cout << "Copy constructor called, copied the ideas" << std::endl;
 }
 
