@@ -1,3 +1,4 @@
+#pragma once
 #ifndef CAT_HPP
 # define CAT_HPP
 
@@ -22,8 +23,9 @@ class Cat: public Animal
 		// Methods
 		void makeSound() const;
         std::string getType() const;
+		Brain *getBrain(void);
 	private:
-		Brain *brain;
+		Brain *_brain;
 };
 
 #endif

@@ -9,6 +9,8 @@ SRCS := main.cpp \
 		bsp.cpp
 
 OBJS := $(SRCS:.cpp=.o)
+DEPS := $(OBJS:.o=.d) 
+-include $(DEPS)
 
 .PHONY: all clean fclean re
 
@@ -21,7 +23,7 @@ $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(TARGET)

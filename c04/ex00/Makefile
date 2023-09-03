@@ -1,6 +1,8 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 
+OBJDIR := .obj
+
 TARGET := animal
 
 SRCS := main.cpp \
@@ -10,9 +12,8 @@ SRCS := main.cpp \
 		WrongAnimal.cpp \
 		WrongCat.cpp
 
-OBJS := $(SRCS:.cpp=.o)
-DEPS := $(OBJS:.o=.d) 
--include $(DEPS)
+OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
+DEPS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.d))
 
 .PHONY: all clean fclean re
 
@@ -21,13 +22,17 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
+$(OBJDIR)/:
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: %.cpp | $(OBJDIR)/
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(DEPS)
+	rm -rf $(OBJDIR) $(TARGET)
 
 fclean: clean
-	$(RM) $(TARGET)
 
 re: fclean all
+
+-include $(DEPS)

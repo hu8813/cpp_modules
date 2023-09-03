@@ -22,7 +22,7 @@ class Animal
 		// Getters / Setters
 		std::string getType() const;
 		void setType(const std::string& name);
-        virtual void makeSound() const;
+        virtual void makeSound() const = 0;
 		virtual Brain *getBrain(void);
 
 	protected:

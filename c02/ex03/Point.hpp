@@ -1,9 +1,8 @@
 #ifndef POINT_HPP
 # define POINT_HPP
 
-#include "Fixed.hpp"
+# include "Fixed.hpp"
 # include <iostream>
-# include <string>
 
 class Point
 {
@@ -29,6 +28,6 @@ class Point
 		
 };
 
-bool bsp( Point const a, Point const b, Point const c, Point const point );
+void isPointInTriangle(Point a, Point b, Point c, Point point);
 
 #endif

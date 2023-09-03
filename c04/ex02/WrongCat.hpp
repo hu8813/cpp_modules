@@ -1,9 +1,9 @@
+#pragma once
 #ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
 # include <iostream>
 # include "WrongAnimal.hpp"
-# include "Brain.hpp"
 
 class WrongCat: public WrongAnimal
 {
@@ -23,7 +23,7 @@ class WrongCat: public WrongAnimal
 		void makeSound() const;
         std::string getType() const;
 	private:
-		Brain *brain;
+		
 };
 
 #endif

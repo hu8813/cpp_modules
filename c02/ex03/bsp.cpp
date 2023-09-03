@@ -31,3 +31,12 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
     // std::cout << areaABP << std::endl;
     return ((areaABC == (areaPBC + areaAPC + areaABP)));
 }
+
+void isPointInTriangle(Point a, Point b, Point c, Point point)
+{
+    if ( bsp( a, b, c, point ) == true ) {
+        std::cout << point.getX() << "." << point.getY() << ": Point is in the triangle" << std::endl;
+    } else {
+        std::cout << point.getX() << "." << point.getY() << ": Point is not in the triangle" << std::endl;
+    }
+}

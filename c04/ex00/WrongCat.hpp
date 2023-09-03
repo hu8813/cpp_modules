@@ -1,3 +1,4 @@
+#pragma once
 #ifndef WRONGCAT_HPP
 # define WRONGCAT_HPP
 
@@ -19,7 +20,7 @@ class WrongCat: public WrongAnimal
 		WrongCat & operator=(const WrongCat &assign);
 		
 		// Methods
-		//void makeSound() const;
+		void makeSound() const;
         std::string getType() const;
 	private:
 		

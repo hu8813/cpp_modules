@@ -1,3 +1,4 @@
+#pragma once
 #ifndef BRAIN_HPP
 # define BRAIN_HPP
 

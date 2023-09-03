@@ -1,11 +1,12 @@
+#pragma once
 #ifndef CAT_HPP
 # define CAT_HPP
 
 # include <iostream>
-# include "AAnimal.hpp"
+# include "Animal.hpp"
 # include "Brain.hpp"
 
-class Cat: public AAnimal
+class Cat: public Animal
 {
 	public:
 		// Constructors
@@ -22,8 +23,9 @@ class Cat: public AAnimal
 		// Methods
 		void makeSound() const;
         std::string getType() const;
+		Brain *getBrain(void);
 	private:
-		Brain *brain;
+		Brain *_brain;
 };
 
 #endif

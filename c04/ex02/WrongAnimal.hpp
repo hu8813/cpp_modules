@@ -1,3 +1,4 @@
+#pragma once
 #ifndef WRONGANIMAL_HPP
 # define WRONGANIMAL_HPP
 
@@ -12,14 +13,14 @@ class WrongAnimal
 		WrongAnimal(const WrongAnimal &copy);
 		
 		// Destructor
-		virtual ~WrongAnimal();
+		~WrongAnimal();
 		
 		// Operators
 		WrongAnimal & operator=(const WrongAnimal &assign);
 		
 		// Getters / Setters
-		virtual std::string getType() const;
-		virtual void makeSound() const = 0;
+		std::string getType() const;
+		void makeSound() const;
 		void setType(const std::string& name);
 		
 	protected:

@@ -1,4 +1,4 @@
-#include "Cat.hpp"
+#include "Cat.hpp" 
 
 Cat::Cat()
 {
@@ -20,15 +20,13 @@ Cat::Cat(const Cat &copy): Animal(copy)
 
 Cat & Cat::operator=(const Cat &assign)
 {
-    if (this != &assign){ 
     _type = assign.getType();
-    }
     std::cout << "Assignment Operator Cat Called" << std::endl;
     return *this;
 }
 
 void Cat::makeSound() const{
-    std::cout << "Miaww!" << std::endl;
+    std::cout << "\e[0;32mMiaww!\e[0m" << std::endl;
 }
 
 std::string Cat::getType() const

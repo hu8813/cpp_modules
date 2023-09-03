@@ -20,17 +20,14 @@ WrongCat::WrongCat(const WrongCat &copy): WrongAnimal(copy)
 
 WrongCat & WrongCat::operator=(const WrongCat &assign)
 {
-    if (this != &assign){ 
     _type = assign.getType();
-    }
     std::cout << "Assignment Operator WrongCat Called" << std::endl;
     return (*this);
 }
 
-// void WrongCat::makeSound() const{
-//     WrongAnimal::makeSound();
-//     //std::cout << "Default Wrong Cat Song: Wrong Miaww!" << std::endl;
-// }
+void WrongCat::makeSound() const{
+    std::cout << "Default Wrong Cat Song: Wrong Miaww!" << std::endl;
+}
 
 std::string WrongCat::getType() const
 {

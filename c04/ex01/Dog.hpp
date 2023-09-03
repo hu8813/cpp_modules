@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DOG_HPP
 # define DOG_HPP
 
@@ -22,8 +23,9 @@ class Dog: public Animal
 		// Methods
 		void makeSound() const;
         std::string getType() const;
+		Brain *getBrain(void);
 	private:
-		Brain *brain;
+		Brain *_brain;
 };
 
 #endif
