@@ -1,8 +1,6 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 
-OBJDIR := .obj
-
 TARGET := animal
 
 SRCS := main.cpp \
@@ -12,6 +10,7 @@ SRCS := main.cpp \
 		WrongAnimal.cpp \
 		WrongCat.cpp
 
+OBJDIR := .obj
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
 DEPS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.d))
 
@@ -29,9 +28,10 @@ $(OBJDIR)/%.o: %.cpp | $(OBJDIR)/
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR) $(TARGET)
+	rm -rf $(OBJDIR)
 
 fclean: clean
+	rm -rf $(TARGET)
 
 re: fclean all
 

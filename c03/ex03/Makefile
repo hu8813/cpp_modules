@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 
 TARGET := diamondtrap
 
@@ -8,9 +8,9 @@ SRCS := main.cpp \
 		ScavTrap.cpp \
 		FragTrap.cpp
 
-OBJS := $(SRCS:.cpp=.o)
-DEPS := $(OBJS:.o=.d) 
--include $(DEPS)
+OBJDIR := .obj
+OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
+DEPS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.d))
 
 .PHONY: all clean fclean re
 
@@ -19,13 +19,18 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
+$(OBJDIR)/:
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: %.cpp | $(OBJDIR)/
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS) $(DEPS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	$(RM) $(TARGET)
+	rm -rf $(TARGET)
 
 re: fclean all
+
+-include $(DEPS)

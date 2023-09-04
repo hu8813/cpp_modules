@@ -1,26 +1,33 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Werror
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 
 NAME := phonebook
 
 SRCS := main.cpp 		Contact.cpp 		PhoneBook.cpp
-		
-OBJS := $(SRCS:.cpp=.o)
+
+OBJDIR := .obj
+OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
+DEPS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.d))
 
 .PHONY: all clean fclean re
 
-all: $(NAME)
+all: $(TARGET)
 
-$(NAME): $(OBJS)
+$(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-%.o: %.cpp
+$(OBJDIR)/:
+	mkdir -p $(OBJDIR)
+
+$(OBJDIR)/%.o: %.cpp | $(OBJDIR)/
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	rm -rf $(OBJDIR)
 
 fclean: clean
-	$(RM) $(NAME)
+	rm -rf $(TARGET)
 
 re: fclean all
+
+-include $(DEPS)
