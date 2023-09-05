@@ -8,7 +8,7 @@ int	main(void)
     Point b = Point(10, 30);
     Point c = Point(20, 0);
     //Point point = Point(10, 2);
-    Point point = Point(0, 0);
+    Point point = Point(10, 10);
         
     isPointInTriangle(a, b, c, point);
 

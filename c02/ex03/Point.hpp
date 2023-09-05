@@ -16,7 +16,7 @@ class Point
 		~Point();
 		
 		// Operators
-		const Point & operator=(const Point &assign);
+		Point & operator=(const Point &);
 		
 		// Getters / Setters
 		Fixed getX() const;

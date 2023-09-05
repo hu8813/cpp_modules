@@ -26,13 +26,8 @@ Point::~Point()
 
 
 // Operators
-const Point & Point::operator=(const Point &assign)
+Point & Point::operator=(const Point &)
 {
-	(void)assign;
-	// if ( this != &assign ) {
-	// this->_x = assign.getX();
-	// this->_y = assign.getY();
-	// }
 	return *this;
 }
 
