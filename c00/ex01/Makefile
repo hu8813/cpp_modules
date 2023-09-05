@@ -1,7 +1,7 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
 
-NAME := phonebook
+TARGET := phonebook
 
 SRCS := main.cpp 		Contact.cpp 		PhoneBook.cpp
 
