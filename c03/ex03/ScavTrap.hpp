@@ -13,7 +13,8 @@ class ScavTrap: public ClapTrap
 		ScavTrap(std::string name);
 		ScavTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
 		ScavTrap(const ScavTrap &copy);
-		
+		void attack(const std::string& target);
+
 		// Destructor
 		~ScavTrap();
 		

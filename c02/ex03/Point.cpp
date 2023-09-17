@@ -26,8 +26,11 @@ Point::~Point()
 
 
 // Operators
-Point & Point::operator=(const Point &)
+Point & Point::operator=(const Point &copy)
 {
+	(void)copy;
+	//_x = copy.getX();
+	//_y = copy.getY();
 	return *this;
 }
 

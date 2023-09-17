@@ -5,14 +5,13 @@
 
 int main(void)
 {
+    {
     ClapTrap clapTrap1;
     ClapTrap clapTrap2("cat", 100, 100, 10);
     ScavTrap scavTrap1;
     ScavTrap scavTrap2("dog", 100, 100, 10);
     FragTrap fragTrap1;
     FragTrap fragTrap2("bird", 100, 100, 10);
-    DiamondTrap diamondTrap1;
-    DiamondTrap diamondTrap2("diamond", 100, 100, 10);
 
     clapTrap1.attack("ClapTrap2");
     clapTrap2.takeDamage(10);
@@ -36,14 +35,15 @@ int main(void)
     fragTrap2.attack("FragTrap1");
     fragTrap1.takeDamage(10);
     fragTrap2.highFivesGuys();
+    }
+    {
+    DiamondTrap		diamondtrap("DiamondTrap");
 
-    diamondTrap1.attack("DiamondTrap2");
-    diamondTrap1.whoAmI();
-    diamondTrap2.takeDamage(10);
-    diamondTrap2.beRepaired(10);
-    diamondTrap2.attack("DiamondTrap1");
-    diamondTrap1.takeDamage(10);
-    
-
+	diamondtrap.attack("DiamondTrap");
+	diamondtrap.takeDamage(30);
+	diamondtrap.beRepaired(30);
+	diamondtrap.highFivesGuys();
+	diamondtrap.whoAmI();
+    }
     return (0);
 }

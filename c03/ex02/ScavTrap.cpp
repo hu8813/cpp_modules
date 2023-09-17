@@ -78,5 +78,4 @@ void ScavTrap::attack(const std::string& target)
 	}
 	this->_energyPoints -= 1;
 	std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " attacks " << target << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
-	(void)target;
 }

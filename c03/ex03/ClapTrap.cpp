@@ -79,35 +79,35 @@ void ClapTrap::attack(const std::string& target)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
 		return ;
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;
-	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
 		return ;
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy to take damage!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no energy to take damage!" << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " takes " << amount << " points of damage!" << std::endl;
+	std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " takes " << amount << " points of damage!" << std::endl;
 	this->_hitPoints -= amount;
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " died!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " died!" << std::endl;
 		return ;
 	}
 }
@@ -116,15 +116,15 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
 		return ;
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitPoints to repair!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitPoints to repair!" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;
 	this->_hitPoints = this->_hitPoints + amount;
-	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " is repaired by " << amount << " points!" << std::endl;
+	std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " is repaired by " << amount << " points!" << std::endl;
 }

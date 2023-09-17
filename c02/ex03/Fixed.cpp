@@ -35,16 +35,6 @@ Fixed::~Fixed()
 }
 
 
-// Operators
-// const Fixed & Fixed::operator=(const Fixed &assign) const
-// {
-//     std::cout << "\e[0;34mCopy assignment operator called\e[0m" << std::endl;
-//     if (this != &assign) {
-//         _rawBits = assign.getRawBits();
-//     }
-//     return *this;
-// }
-
 Fixed & Fixed::operator=(const Fixed &assign)
 {
     //std::cout << "\e[0;34mCopy assignment operator called\e[0m" << std::endl;

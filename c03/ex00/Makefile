@@ -6,9 +6,9 @@ TARGET := claptrap
 SRCS := main.cpp \
 		ClapTrap.cpp
 
-OBJDIR := .obj
-OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
-DEPS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.d))
+OBJS := $(SRCS:.cpp=.o)
+DEPS := $(OBJS:.o=.d) 
+-include $(DEPS)
 
 .PHONY: all clean fclean re
 
@@ -17,18 +17,13 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) $^ -o $@
 
-$(OBJDIR)/:
-	mkdir -p $(OBJDIR)
-
-$(OBJDIR)/%.o: %.cpp | $(OBJDIR)/
+%.o: %.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	rm -rf $(OBJDIR)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
-	rm -rf $(TARGET)
+	$(RM) $(TARGET)
 
 re: fclean all
-
--include $(DEPS)
