@@ -44,8 +44,8 @@ void DiamondTrap::whoAmI(void)
     std::cout << "DiamondTrap Name: " << _name << ", ClapTrap Name: " << _name << std::endl;
 }
 
-void DiamondTrap::attack(std::string const &target)
-{
-    ScavTrap::attack(target);
-}
+// void DiamondTrap::attack(std::string const &target)
+// {
+//     ScavTrap::attack(target);
+// }
 

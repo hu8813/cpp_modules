@@ -51,19 +51,19 @@ void FragTrap::highFivesGuys(void)
 		std::cout << "\e[0;31mFragTrap: " << ClapTrap::getName() << "\e[0m" << " can't high five. No energy/hitPoints (dead)!" << std::endl;
 }
 
-void FragTrap::attack(const std::string& target)
-{
-	if (ClapTrap::getHitPoints() <= 0)
-	{
-		std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
-		return ;
-	}
-	else if (ClapTrap::getEnergyPoints() <= 0)
-	{
-		std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
-		return ;
-	}
-	this->_energyPoints -= 1;
-	std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " attacks " << target << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
-}
+// void FragTrap::attack(const std::string& target)
+// {
+// 	if (ClapTrap::getHitPoints() <= 0)
+// 	{
+// 		std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+// 		return ;
+// 	}
+// 	else if (ClapTrap::getEnergyPoints() <= 0)
+// 	{
+// 		std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
+// 		return ;
+// 	}
+// 	this->_energyPoints -= 1;
+// 	std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " attacks " << target << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
+// }
 
