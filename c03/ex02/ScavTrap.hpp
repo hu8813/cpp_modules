@@ -1,9 +1,8 @@
 #pragma once
 
-#include <iostream>
-#include "ClapTrap.hpp"
+#include "./ClapTrap.hpp"
 
-class ScavTrap: public ClapTrap
+class ScavTrap: virtual public ClapTrap
 {
 	public:
 		// Constructors
@@ -11,7 +10,7 @@ class ScavTrap: public ClapTrap
 		ScavTrap(std::string name);
 		ScavTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
 		ScavTrap(const ScavTrap &copy);
-		void attack(const std::string& target);
+		//void attack(const std::string& target);
 
 		// Destructor
 		~ScavTrap();
@@ -21,6 +20,7 @@ class ScavTrap: public ClapTrap
 		
 		// Methods
 		void guardGate();
+		void	attack(const std::string& target);
 	private:
 		
 };
