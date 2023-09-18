@@ -10,7 +10,6 @@ class ScavTrap: virtual public ClapTrap
 		ScavTrap(std::string name);
 		ScavTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
 		ScavTrap(const ScavTrap &copy);
-		//void attack(const std::string& target);
 
 		// Destructor
 		~ScavTrap();
@@ -20,7 +19,7 @@ class ScavTrap: virtual public ClapTrap
 		
 		// Methods
 		void guardGate();
-		void	attack(const std::string& target);
+		//void	attack(const std::string& target);
 	private:
 		
 };
