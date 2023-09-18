@@ -35,13 +35,12 @@ Fixed::~Fixed()
 }
 
 
+// Operators
 Fixed & Fixed::operator=(const Fixed &assign)
 {
-    //std::cout << "\e[0;34mCopy assignment operator called\e[0m" << std::endl;
-    if (this != &assign) {
-        this->_rawBits = assign.getRawBits();
-    }
-    return *this;
+	std::cout << "\e[0;34mCopy assignment operator called\e[0m" << std::endl;
+	_rawBits = assign.getRawBits();
+	return *this;
 }
 
 std::ostream& operator<< (std::ostream& os, const Fixed& fixed)
@@ -63,17 +62,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat( void ) const
 {
-	return (float)_rawBits / (1 << _bits);
+	return static_cast<float>(_rawBits) / (1 << _bits);
 }
 
 int Fixed::toInt( void ) const
 {
-    if (_rawBits >= 0) {
-        return _rawBits >> _bits;
-    } else {
-        int absRawBits = ~_rawBits + 1;
-        return -(absRawBits >> _bits);
-    }	
+    return static_cast<int>(roundf(toFloat()));
 }
 
 bool Fixed::operator>(const Fixed &rhs) const {

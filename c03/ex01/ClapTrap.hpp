@@ -12,7 +12,7 @@ class ClapTrap
 		ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
 
 		// Destructor
-		~ClapTrap();
+		virtual ~ClapTrap();
 		
 		// Operators
 		ClapTrap & operator=(const ClapTrap &assign);
@@ -22,7 +22,7 @@ class ClapTrap
 		int getHitPoints() const;
 		int getEnergyPoints() const;
 		int getAttackDamage() const;
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 

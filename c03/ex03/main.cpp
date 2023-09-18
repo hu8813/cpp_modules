@@ -36,13 +36,19 @@ int main(void)
     fragTrap1.takeDamage(10);
     fragTrap2.highFivesGuys();
     }
+
     {
     DiamondTrap		diamondtrap("DiamondTrap");
+    std::cout << "\e[0;30mDiamondTrap Health: \e[0m HP: "<< diamondtrap.getHitPoints() << ", EP: "<< diamondtrap.getEnergyPoints() << ", AP: "<< diamondtrap.getAttackDamage() <<  std::endl;
 
 	diamondtrap.attack("DiamondTrap");
+    
 	diamondtrap.takeDamage(30);
+    std::cout << "\e[0;30mDiamondTrap Health: \e[0m HP: "<< diamondtrap.getHitPoints() << ", EP: "<< diamondtrap.getEnergyPoints() << ", AP: "<< diamondtrap.getAttackDamage() <<  std::endl;
 	diamondtrap.beRepaired(30);
+    std::cout << "\e[0;30mDiamondTrap Health: \e[0m HP: "<< diamondtrap.getHitPoints() << ", EP: "<< diamondtrap.getEnergyPoints() << ", AP: "<< diamondtrap.getAttackDamage() <<  std::endl;
 	diamondtrap.highFivesGuys();
+    
 	diamondtrap.whoAmI();
     }
     return (0);

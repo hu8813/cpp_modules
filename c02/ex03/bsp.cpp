@@ -34,9 +34,10 @@ bool bsp( Point const a, Point const b, Point const c, Point const point )
 
 void isPointInTriangle(Point a, Point b, Point c, Point point)
 {
+    std::cout << "(x,y) \t" << "a: " << a.getX() << "," << a.getY() << "\t b: " << b.getX() << "," << b.getY() << "\t c: "<< c.getX() << "," << c.getY()  << std::endl;
     if ( bsp( a, b, c, point ) == true ) {
-        std::cout << point.getX() << "." << point.getY() << ": Point is in the triangle" << std::endl;
+        std::cout << "Point: "<< point.getX() << "." << point.getY() << " is in the triangle" << std::endl;
     } else {
-        std::cout << point.getX() << "." << point.getY() << ": Point is not in the triangle" << std::endl;
+        std::cout << "Point: "<< point.getX() << "." << point.getY() << ": Point is not in the triangle" << std::endl;
     }
 }

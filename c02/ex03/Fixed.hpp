@@ -1,8 +1,7 @@
-#ifndef FIXED_HPP
-# define FIXED_HPP
+#pragma once
 
-# include <iostream>
-# include <cstdlib>
+#include <iostream>
+#include <cstdlib>
 #include <cmath>
 
 class Fixed
@@ -18,7 +17,7 @@ class Fixed
 		~Fixed();
 		
 		// Operators
-		//Fixed & operator=(const Fixed &assign) const;
+		Fixed & operator=(const Fixed &assign) const;
 		//const Fixed & operator=(const Fixed &assign) const;
 		Fixed & operator=(const Fixed &assign);
 		bool operator>(const Fixed &rhs) const;
@@ -55,5 +54,3 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream& os, const Fixed& fixed);
-
-#endif

@@ -1,18 +1,20 @@
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap(): ClapTrap("NoName_clap_name"), ScavTrap(), FragTrap(), _name("NoName")
+DiamondTrap::DiamondTrap(): ClapTrap("NoName_clap_name"), ScavTrap("NoName_clap_name"), FragTrap("NoName_clap_name"), _name("NoName")
 {
-    _energyPoints = ScavTrap::getEnergyPoints();
-    std::cout << "DiamondTrap Constructor called" << std::endl;
+    FragTrap::_hitPoints = 100;
+	ScavTrap::_energyPoints = 50;
+	FragTrap::_attackDamage = 30;
+    std::cout << "DiamondTrap Default Constructor called" << " HP: "<< _hitPoints << ", EP: "<< _energyPoints << ", AP: "<< _attackDamage <<  std::endl;
 
 }
 
-DiamondTrap::DiamondTrap(std::string name): ClapTrap(name+"_clap_name"), ScavTrap(), FragTrap(), _name(name)
+DiamondTrap::DiamondTrap(std::string name): ClapTrap(name+"_clap_name"), ScavTrap(name), FragTrap(name), _name(name)
 {
-    //_energyPoints = ScavTrap::getEnergyPoints();
-    _energyPoints = ScavTrap::_attackDamage;
-    std::cout << "DiamondTrap Constructor called" << std::endl;
-
+    FragTrap::_hitPoints = 100;
+	ScavTrap::_energyPoints = 50;
+	FragTrap::_attackDamage = 30;
+    std::cout << "DiamondTrap Name Constructor called" << " HP: "<< DiamondTrap::_hitPoints << ", EP: "<< _energyPoints << ", AP: "<< _attackDamage <<  std::endl;
 }
 
 
@@ -41,7 +43,7 @@ DiamondTrap::~DiamondTrap()
 
 void DiamondTrap::whoAmI(void)
 {
-    std::cout << "DiamondTrap Name: " << _name << ", ClapTrap Name: " << _name << std::endl;
+    std::cout << "DiamondTrap Name: " << _name << ", ClapTrap Name: " << ClapTrap::_name << std::endl;
 }
 
 // void DiamondTrap::attack(std::string const &target)

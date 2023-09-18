@@ -66,5 +66,5 @@ float Fixed::toFloat(void) const
 }
 
 int Fixed::toInt(void) const {
-    return static_cast<int>(roundf(static_cast<float>(_rawBits) / (1 << _bits)));
+    return static_cast<int>(roundf(toFloat()));
 }

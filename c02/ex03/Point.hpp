@@ -1,5 +1,4 @@
-#ifndef POINT_HPP
-# define POINT_HPP
+#pragma once
 
 # include "Fixed.hpp"
 # include <iostream>
@@ -16,7 +15,7 @@ class Point
 		~Point();
 		
 		// Operators
-		Point & operator=(const Point &copy);
+		Point & operator=(const Point &);
 		
 		// Getters / Setters
 		Fixed getX() const;
@@ -29,5 +28,3 @@ class Point
 };
 
 void isPointInTriangle(Point a, Point b, Point c, Point point);
-
-#endif

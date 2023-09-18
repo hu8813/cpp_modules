@@ -19,7 +19,7 @@ class FragTrap: virtual public ClapTrap
 		
 		// Methods
 		void highFivesGuys(void);
-		//void	attack(const std::string& target);
+		void attack(const std::string& target);
 		
 	private:
 		

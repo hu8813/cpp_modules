@@ -1,7 +1,5 @@
-#ifndef FIXED_HPP
-# define FIXED_HPP
-
-# include <iostream>
+#pragma once
+#include <iostream>
 
 class Fixed
 {
@@ -25,5 +23,3 @@ class Fixed
 		static const int _bits = 8;
 		
 };
-
-#endif

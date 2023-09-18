@@ -52,18 +52,18 @@ void ScavTrap::guardGate()
 }
 
 // Methods
-// void ScavTrap::attack(const std::string& target)
-// {
-// 	if (ClapTrap::getHitPoints() <= 0)
-// 	{
-// 		std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
-// 		return ;
-// 	}
-// 	else if (ClapTrap::getEnergyPoints() <= 0)
-// 	{
-// 		std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
-// 		return ;
-// 	}
-// 	this->_energyPoints -= 1;
-// 	std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " attacks " << target << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
-// }
+void ScavTrap::attack(const std::string& target)
+{
+	if (ClapTrap::getHitPoints() <= 0)
+	{
+		std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		return ;
+	}
+	else if (ClapTrap::getEnergyPoints() <= 0)
+	{
+		std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
+		return ;
+	}
+	this->_energyPoints -= 1;
+	std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " attacks " << target << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
+}
