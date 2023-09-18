@@ -1,26 +1,24 @@
 #pragma once
-#ifndef DIAMONDTRAP_HPP
-# define DIAMONDTRAP_HPP
 
-# include "ScavTrap.hpp"
-# include "FragTrap.hpp"
+#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 class DiamondTrap: public ScavTrap, public FragTrap
 {
     public:
         DiamondTrap();
         DiamondTrap(std::string name);
-        DiamondTrap(DiamondTrap const &copy);
+        DiamondTrap(DiamondTrap const & copy);
         ~DiamondTrap();
 
-        DiamondTrap& operator=(DiamondTrap const &copy);
+        DiamondTrap& operator=(DiamondTrap const &assign);
 
         void whoAmI(void);
-        //void attack(const std::string &target);
+        void attack(const std::string &target);
+        //using ScavTrap::attack;
 
     private:
         std::string     _name;
 
 };
-
-#endif

@@ -1,38 +1,25 @@
 
-#include "ClapTrap.hpp"
 #include "FragTrap.hpp"
 
 // Constructors
-FragTrap::FragTrap()
+FragTrap::FragTrap():ClapTrap("noName",100,100,30)
 {
-	this->_name = "noName";
 	std::cout << "\e[0;35mDefault Constructor called of FragTrap\e[0m" << std::endl;
 }
 
-FragTrap::FragTrap(std::string	name)
+FragTrap::FragTrap(std::string	name):ClapTrap(name,100,100,30)
 {
-	this->_name = name;
-	this->_hitPoints = 100;
-	this->_energyPoints = 100;
-	this->_attackDamage = 30;
 	std::cout << "\e[0;35mDefault Constructor called of FragTrap\e[0m" << std::endl;
 }
 
-FragTrap::FragTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
+FragTrap::FragTrap(std::string	name, int hitPoints, int energyPoints, int attackDamage):ClapTrap(name,hitPoints,energyPoints,attackDamage)
 {
-	this->_name = name;
-	this->_hitPoints = hitPoints;
-	this->_energyPoints = energyPoints;
-	this->_attackDamage = attackDamage;
 	std::cout << "\e[0;35mFields Constructor called of FragTrap\e[0m" << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &copy)
+FragTrap::FragTrap(const FragTrap &copy): ClapTrap()
 {
-	_name = copy.getName();
-	_hitPoints = copy.getHitPoints();
-	_energyPoints = copy.getEnergyPoints();
-	_attackDamage = copy.getAttackDamage();
+	*this = copy;
 	std::cout << "\e[0;35mCopy Constructor called of FragTrap\e[0m" << std::endl;
 }
 
@@ -62,5 +49,21 @@ void FragTrap::highFivesGuys(void)
 		std::cout << "\e[0;31mFragTrap: High fives guys!\e[0m" << std::endl;
 	else
 		std::cout << "\e[0;31mFragTrap: " << ClapTrap::getName() << "\e[0m" << " can't high five. No energy/hitPoints (dead)!" << std::endl;
+}
+
+void FragTrap::attack(const std::string& target)
+{
+	if (ClapTrap::getHitPoints() <= 0)
+	{
+		std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		return ;
+	}
+	else if (ClapTrap::getEnergyPoints() <= 0)
+	{
+		std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
+		return ;
+	}
+	this->_energyPoints -= 1;
+	std::cout << "\e[0;32mFragTrap\e[0m " << "\e[0;33m" << ClapTrap::getName() << "\e[0m" << " attacks " << target << ", causing " << ClapTrap::getAttackDamage() << " points of damage!" << std::endl;
 }
 

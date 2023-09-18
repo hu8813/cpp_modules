@@ -1,37 +1,25 @@
+
 #include "ScavTrap.hpp"
-#include "ClapTrap.hpp"
 
 // Constructors
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap(): ClapTrap("noName",100,50,20)
 {
-	this->_name = "noName";
 	std::cout << "\e[0;32mDefault Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap(std::string	name): ClapTrap(name,100,50,20)
 {
-	this->_name = name;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
-	std::cout << "\e[0;32mDefault Constructor called of ScavTrap\e[0m" << std::endl;
+	std::cout << "\e[0;32mName Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
+ScavTrap::ScavTrap(std::string	name, int hitPoints, int energyPoints, int attackDamage):ClapTrap(name,hitPoints,energyPoints,attackDamage)
 {
-	this->_name = name;
-	this->_hitPoints = hitPoints;
-	this->_energyPoints = energyPoints;
-	this->_attackDamage = attackDamage;
 	std::cout << "\e[0;32mFields Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy)
+ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap()
 {
-	_name = copy.getName();
-	_hitPoints = copy.getHitPoints();
-	_energyPoints = copy.getEnergyPoints();
-	_attackDamage = copy.getAttackDamage();
+	*this = copy;
 	std::cout << "\e[0;32mCopy Constructor called of ScavTrap\e[0m" << std::endl;
 }
 

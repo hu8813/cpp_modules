@@ -1,8 +1,6 @@
 #pragma once
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
 
-# include <iostream>
+#include <iostream>
 
 class ClapTrap
 {
@@ -12,7 +10,7 @@ class ClapTrap
 		ClapTrap(std::string name);
 		ClapTrap(const ClapTrap &copy);
 		ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage);
-		
+
 		// Destructor
 		~ClapTrap();
 		
@@ -36,5 +34,3 @@ class ClapTrap
 		int _attackDamage;
 		
 };
-
-#endif
