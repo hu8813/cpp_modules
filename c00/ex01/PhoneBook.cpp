@@ -33,25 +33,26 @@ void PhoneBook::displayAllContacts() const
     }
 }
 
-void PhoneBook::addContact(Contact& contact)
+void PhoneBook::addContact(Contact &contact)
 {
     // If there are less than 8 contacts, add the new contact to the next index
 
-        int index = contact.getIndex();
-        _contacts[index] = contact;
-        index = ((index + 1) % 8);
-        contact.setIndex(index);
-        if (_numberOfContacts < 8)
+    int index = contact.getIndex();
+    _contacts[index] = contact;
+    index = ((index + 1) % 8);
+    contact.setIndex(index);
+    if (_numberOfContacts < 8)
         _numberOfContacts++;
-
-    
 }
 
 Contact PhoneBook::getContact(int index) const
 {
-    if (index >= 0 && index < _numberOfContacts  && index < _maxContacts) {
+    if (index >= 0 && index < _numberOfContacts && index < _maxContacts)
+    {
         return _contacts[index];
-    } else {
+    }
+    else
+    {
         std::cout << COLOR_RED << "Error: index out of range." << COLOR_RESET << std::endl;
         return Contact();
     }
@@ -64,16 +65,18 @@ int PhoneBook::getNumberOfContacts() const
 
 void PhoneBook::showContact(int index) const
 {
-    if (index < 1 || index > _numberOfContacts || index > _maxContacts )
+    if (index < 1 || index > _numberOfContacts || index > _maxContacts)
     {
         std::cout << COLOR_RED << "Error: index out of range" << COLOR_RESET << std::endl;
         return;
     }
     Contact contact = _contacts[index - 1];
-    std::cout  << std::endl << "Contact #" << index << std::endl;
+    std::cout << std::endl
+              << "Contact #" << index << std::endl;
     std::cout << "First Name: " << contact.getFirstName() << std::endl;
     std::cout << "Last Name: " << contact.getLastName() << std::endl;
     std::cout << "Nickname: " << contact.getNickname() << std::endl;
     std::cout << "Phone Number: " << contact.getPhoneNumber() << std::endl;
-    std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl << std::endl;
+    std::cout << "Darkest Secret: " << contact.getDarkestSecret() << std::endl
+              << std::endl;
 }

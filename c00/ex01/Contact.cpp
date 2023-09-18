@@ -65,7 +65,7 @@ void Contact::setDarkestSecret(std::string darkestSecret)
     _darkestSecret = darkestSecret;
 }
 
-void Contact::setIndex(int index) 
+void Contact::setIndex(int index)
 {
     _index = index;
 }

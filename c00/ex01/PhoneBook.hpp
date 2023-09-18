@@ -18,7 +18,7 @@ public:
     PhoneBook();
     ~PhoneBook();
 
-    void addContact(Contact& contact);
+    void addContact(Contact &contact);
     Contact getContact(int index) const;
     int getNumberOfContacts() const;
     void showContact(int index) const;
