@@ -21,6 +21,6 @@ int main(void)
     clapTrap4.takeDamage(10);
     clapTrap4.beRepaired(10);
     clapTrap4.attack("ClapTrap1");
-    
+
     return (0);
 }
