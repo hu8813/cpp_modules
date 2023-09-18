@@ -1,40 +1,26 @@
 #include "ClapTrap.hpp"
 
 // Constructors
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap():_name("noName"),_hitPoints(10),_energyPoints(10),_attackDamage(0)
 {
-	_name = "noName";
-	_hitPoints = 10;
-	_energyPoints = 10;
-	_attackDamage = 0;
 	std::cout << "\e[0;33mDefault Constructor called of ClapTrap\e[0m" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string	name)
+ClapTrap::ClapTrap(std::string	name):_name(name),_hitPoints(10),_energyPoints(10),_attackDamage(0)
 {
-	_name = name;
-	_hitPoints = 10;
-	_energyPoints = 10;
-	_attackDamage = 0;
-	std::cout << "\e[0;33mDefault Constructor called of ClapTrap\e[0m" << std::endl;
+	std::cout << "\e[0;33mName Constructor called of ClapTrap\e[0m" << std::endl;
+}
+
+
+ClapTrap::ClapTrap(std::string	name, int hitPoints, int energyPoints, int attackDamage):_name(name),_hitPoints(hitPoints),_energyPoints(energyPoints),_attackDamage(attackDamage)
+{
+	std::cout << "\e[0;33mFields Constructor called of ClapTrap\e[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
-	_name = copy.getName();
-	_hitPoints = copy.getHitPoints();
-	_energyPoints = copy.getEnergyPoints();
-	_attackDamage = copy.getAttackDamage();
+	*this = copy;
 	std::cout << "\e[0;33mCopy Constructor called of ClapTrap\e[0m" << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
-{
-	_name = name;
-	_hitPoints = hitPoints;
-	_energyPoints = energyPoints;
-	_attackDamage = attackDamage;
-	std::cout << "\e[0;33mFields Constructor called of ClapTrap\e[0m" << std::endl;
 }
 
 
@@ -79,35 +65,35 @@ void ClapTrap::attack(const std::string& target)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
 		return ;
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitpoints to attack!" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;
-	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
+	std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
 		return ;
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy to take damage!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no energy to take damage!" << std::endl;
 		return ;
 	}
-	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " takes " << amount << " points of damage!" << std::endl;
+	std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " takes " << amount << " points of damage!" << std::endl;
 	this->_hitPoints -= amount;
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " died!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " died!" << std::endl;
 		return ;
 	}
 }
@@ -116,15 +102,15 @@ void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (this->_hitPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no hitPoints (dead)!" << std::endl;
 		return ;
 	}
 	else if (this->_energyPoints <= 0)
 	{
-		std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitPoints to repair!" << std::endl;
+		std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " has no energy/hitPoints to repair!" << std::endl;
 		return ;
 	}
 	this->_energyPoints--;
 	this->_hitPoints = this->_hitPoints + amount;
-	std::cout << "ClapTrap " << "\e[0;33m" << _name << "\e[0m" << " is repaired by " << amount << " points!" << std::endl;
+	std::cout << "\e[0;34mClapTrap\e[0m " << "\e[0;33m" << _name << "\e[0m" << " is repaired by " << amount << " points!" << std::endl;
 }

@@ -1,8 +1,6 @@
 #pragma once
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
 
-# include <iostream>
+#include <iostream>
 
 class ClapTrap
 {
@@ -29,12 +27,10 @@ class ClapTrap
 		void beRepaired(unsigned int amount);
 
 		
-	private:
+	protected:
 		std::string _name;
 		int _hitPoints;
 		int _energyPoints;
 		int _attackDamage;
 		
 };
-
-#endif

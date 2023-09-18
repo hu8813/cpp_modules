@@ -1,40 +1,26 @@
 #include "ClapTrap.hpp"
 
 // Constructors
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap():_name("noName"),_hitPoints(10),_energyPoints(10),_attackDamage(0)
 {
-	_name = "noName";
-	_hitPoints = 10;
-	_energyPoints = 10;
-	_attackDamage = 0;
 	std::cout << "\e[0;33mDefault Constructor called of ClapTrap\e[0m" << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string	name)
+ClapTrap::ClapTrap(std::string	name):_name(name),_hitPoints(10),_energyPoints(10),_attackDamage(0)
 {
-	_name = name;
-	_hitPoints = 10;
-	_energyPoints = 10;
-	_attackDamage = 0;
-	std::cout << "\e[0;33mDefault Constructor called of ClapTrap\e[0m" << std::endl;
+	std::cout << "\e[0;33mName Constructor called of ClapTrap\e[0m" << std::endl;
+}
+
+
+ClapTrap::ClapTrap(std::string	name, int hitPoints, int energyPoints, int attackDamage):_name(name),_hitPoints(hitPoints),_energyPoints(energyPoints),_attackDamage(attackDamage)
+{
+	std::cout << "\e[0;33mFields Constructor called of ClapTrap\e[0m" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &copy)
 {
-	_name = copy.getName();
-	_hitPoints = copy.getHitPoints();
-	_energyPoints = copy.getEnergyPoints();
-	_attackDamage = copy.getAttackDamage();
+	*this = copy;
 	std::cout << "\e[0;33mCopy Constructor called of ClapTrap\e[0m" << std::endl;
-}
-
-ClapTrap::ClapTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
-{
-	_name = name;
-	_hitPoints = hitPoints;
-	_energyPoints = energyPoints;
-	_attackDamage = attackDamage;
-	std::cout << "\e[0;33mFields Constructor called of ClapTrap\e[0m" << std::endl;
 }
 
 

@@ -1,9 +1,7 @@
 #pragma once
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
 
-# include <iostream>
-# include "ClapTrap.hpp"
+#include <iostream>
+#include "ClapTrap.hpp"
 
 class FragTrap: public ClapTrap
 {
@@ -26,5 +24,3 @@ class FragTrap: public ClapTrap
 	private:
 		
 };
-
-#endif

@@ -1,8 +1,6 @@
 #pragma once
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
 
-# include <iostream>
+#include <iostream>
 
 class ClapTrap
 {
@@ -24,7 +22,7 @@ class ClapTrap
 		int getHitPoints() const;
 		int getEnergyPoints() const;
 		int getAttackDamage() const;
-		virtual void attack(const std::string& target);
+		void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
@@ -36,5 +34,3 @@ class ClapTrap
 		int _attackDamage;
 		
 };
-
-#endif

@@ -1,8 +1,6 @@
 #pragma once
-#ifndef CLAPTRAP_HPP
-# define CLAPTRAP_HPP
 
-# include <iostream>
+#include <iostream>
 
 class ClapTrap
 {
@@ -36,5 +34,3 @@ class ClapTrap
 		int _attackDamage;
 		
 };
-
-#endif

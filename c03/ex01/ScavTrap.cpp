@@ -2,46 +2,32 @@
 #include "ClapTrap.hpp"
 
 // Constructors
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap():_name("noName"),_hitPoints(100),_energyPoints(50),_attackDamage(20)
 {
-	this->_name = "noName";
 	std::cout << "\e[0;32mDefault Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name)
+ScavTrap::ScavTrap():_name(name),_hitPoints(100),_energyPoints(50),_attackDamage(20)
 {
-	this->_name = name;
-	this->_hitPoints = 100;
-	this->_energyPoints = 50;
-	this->_attackDamage = 20;
-	std::cout << "\e[0;32mDefault Constructor called of ScavTrap\e[0m" << std::endl;
+	std::cout << "\e[0;32mName Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string name, int hitPoints, int energyPoints, int attackDamage)
+ScavTrap::ScavTrap(std::string	name, int hitPoints, int energyPoints, int attackDamage):_name(name),_hitPoints(hitPoints),_energyPoints(energyPoints),_attackDamage(attackDamage)
 {
-	this->_name = name;
-	this->_hitPoints = hitPoints;
-	this->_energyPoints = energyPoints;
-	this->_attackDamage = attackDamage;
 	std::cout << "\e[0;32mFields Constructor called of ScavTrap\e[0m" << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &copy)
+ScavTrap::ScavTrap(const ScavTrap &copy): ClapTrap(copy)
 {
-	_name = copy.getName();
-	_hitPoints = copy.getHitPoints();
-	_energyPoints = copy.getEnergyPoints();
-	_attackDamage = copy.getAttackDamage();
+	*this = copy;
 	std::cout << "\e[0;32mCopy Constructor called of ScavTrap\e[0m" << std::endl;
 }
-
 
 // Destructor
 ScavTrap::~ScavTrap()
 {
 	std::cout << "\e[0;31mDestructor called of ScavTrap\e[0m" << std::endl;
 }
-
 
 // Operators
 ScavTrap & ScavTrap::operator=(const ScavTrap &assign)
@@ -63,7 +49,6 @@ void ScavTrap::guardGate()
 		std::cout << "\e[0;32mScavTrap\e[0m " << "\e[0;33m" << this->getName()<< "\e[0m"  << " can not enter in Gate keeper mode (no Energy/Hitpoints)" << std::endl;
 }
 
-// Methods
 void ScavTrap::attack(const std::string& target)
 {
 	if (ClapTrap::getHitPoints() <= 0)
