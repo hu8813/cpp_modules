@@ -90,7 +90,7 @@ int Account::getTotalAmount()
 
 void Account::_displayTimestamp(void)
 {
-    char timeString[80];
+    char timeString[20];
     struct tm* timeInfo;
     std::time_t currentTime;
 
