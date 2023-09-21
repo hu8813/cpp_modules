@@ -18,16 +18,21 @@ public:
     PhoneBook();
     ~PhoneBook();
 
-    void addContact(Contact &contact);
-    Contact getContact(int index) const;
-    int getNumberOfContacts() const;
-    void showContact(int index) const;
-    void displayAllContacts() const;
+    void start(void);
 
 private:
     const static int _maxContacts = 8;
     Contact _contacts[_maxContacts];
     int _numberOfContacts;
+    void displayAllContacts() const;
+    std::string getValidPhoneNumber();
+    std::string getInput(const std::string &prompt);
+    bool isValidPhoneNumber(const std::string &phoneNumber);
+    std::string trim(const std::string &str);
+    void addContact(Contact &contact);
+    Contact getContact(int index) const;
+    int getNumberOfContacts() const;
+    void showContact(int index) const;
 };
 
 #endif
