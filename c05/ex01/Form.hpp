@@ -2,18 +2,36 @@
 
 #include <iostream>
 #include <exception>
+#include "Bureaucrat.hpp"
+
+class Bureaucrat;
 
 class Form
 {
 private:
     std::string const _name;
-    bool isSigned = false;
-    int const gradeToSign;
-    int const gradeToExecute;
+    bool _isSigned;
+    int const _gradeToSign;
+    int const _gradeToExecute;
 public:
-    Form();
+    Form(std::string name, int gradeToSign, int gradeToExecute);
     ~Form();
-    void beSigned();
+    std::string getName(void) const;
+    int getGradeToSign(void) const;
+    int getGradeToExecute(void) const;
+    bool getIsSigned(void) const;
+    void beSigned(const Bureaucrat& bureaucrat);
+    Form(const Form& other);
+    Form& operator=(const Form& other);
+    class GradeTooHighException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
+    class GradeTooLowException : public std::exception {
+    public:
+        virtual const char* what() const throw();
+    };
+
 };
 
 std::ostream& operator<<(std::ostream& os, const Form& form);
