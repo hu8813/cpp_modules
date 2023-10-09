@@ -48,7 +48,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
     return os;
 }
 
-void Bureaucrat::signForm(Form &form) const {
+void Bureaucrat::signForm(AForm &form) const {
     try {
         form.beSigned(*this);
         std::cout << "\033[32m" << this->_name << " signed " << form.getName() << "\033[0m" << std::endl;
