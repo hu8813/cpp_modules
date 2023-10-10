@@ -32,7 +32,7 @@ int main()
     }
 
     // Sign the forms
-    Bureaucrat bureaucrat("Francis", 50);
+    Bureaucrat bureaucrat("Enes", 50);
     try {
         bureaucrat.signForm(presidentialForm);
         bureaucrat.signForm(robotomyForm);

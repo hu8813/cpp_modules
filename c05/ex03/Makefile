@@ -1,7 +1,7 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP -pedantic
 
-TARGET := form
+TARGET := intern
 
 SRCS := main.cpp \
 		Bureaucrat.cpp \

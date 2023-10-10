@@ -1,8 +1,10 @@
 #ifndef INTERN_HPP
 #define INTERN_HPP
 
-#include <string>
 #include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 class Intern {
     public:
@@ -15,9 +17,6 @@ class Intern {
         AForm* makeForm(const std::string &formName, const std::string &target);
 
     private:
-        AForm* createShrubberyCreationForm(const std::string& target) const;
-        AForm* createRobotomyRequestForm(const std::string& target) const;
-        AForm* createPresidentialPardonForm(const std::string& target) const;
 };
 
 #endif
