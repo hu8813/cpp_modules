@@ -5,12 +5,9 @@
 
 class Bureaucrat {
 public:
-    Bureaucrat(std::string name = "default");
-    Bureaucrat(int grade = 150);
-    Bureaucrat(void);
     Bureaucrat(std::string name = "default", int grade = 150);
     Bureaucrat(const Bureaucrat& other);
-    virtual ~Bureaucrat();
+    ~Bureaucrat();
 
     Bureaucrat& operator=(const Bureaucrat& other);
 
@@ -31,7 +28,7 @@ public:
     };
 
 private:
-    std::string _name;
+    const std::string _name;
     int _grade;
 };
 

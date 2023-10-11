@@ -10,55 +10,26 @@ int main()
     PresidentialPardonForm presidentialForm("Marx");
     RobotomyRequestForm robotomyForm("Ehab");
     ShrubberyCreationForm shrubberyForm("Deyan");
+    Bureaucrat kaya("Kaya", 1);
     // Try to execute the forms before they are signed
-    try {
-        presidentialForm.execute(Bureaucrat("Kaya", 1));
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
 
-    Bureaucrat bureaucrat2("Valentin", 1);
-    try {
-        bureaucrat2.signForm(robotomyForm);
-        robotomyForm.execute(bureaucrat2);
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+    kaya.executeForm(presidentialForm);
 
-    try {
-        shrubberyForm.execute(Bureaucrat("Ezgi", 1));
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+    Bureaucrat valentin("Valentin", 1);
+    valentin.signForm(presidentialForm);
+    valentin.executeForm(presidentialForm);
+    
+    kaya.signForm(robotomyForm);
+    kaya.executeForm(robotomyForm);
 
     // Sign the forms
-    Bureaucrat bureaucrat("Enes", 50);
-    try {
-        bureaucrat.signForm(presidentialForm);
-        bureaucrat.signForm(robotomyForm);
-        bureaucrat.signForm(shrubberyForm);
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    // Try to execute the forms again after they are signed
-    try {
-        presidentialForm.execute(Bureaucrat("Bob", 1));
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    try {
-        robotomyForm.execute(Bureaucrat("Bob", 1));
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
-    try {
-        shrubberyForm.execute(Bureaucrat("Bob", 1));
-    } catch (std::exception & e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
+    Bureaucrat enes("Enes", 50);
+    enes.signForm(presidentialForm);
+    enes.signForm(robotomyForm);
+    enes.signForm(shrubberyForm);
+    enes.executeForm(presidentialForm);
+    enes.executeForm(robotomyForm);
+    enes.executeForm(shrubberyForm);
 
     return 0;
 }

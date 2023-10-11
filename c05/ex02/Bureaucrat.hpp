@@ -8,9 +8,6 @@ class AForm;
 
 class Bureaucrat {
 public:
-    Bureaucrat(std::string name = "default");
-    Bureaucrat(int grade = 150);
-    Bureaucrat(void);
     Bureaucrat(std::string name = "default", int grade = 150);
     Bureaucrat(const Bureaucrat& other);
     virtual ~Bureaucrat();
@@ -20,6 +17,7 @@ public:
     std::string getName(void) const;
     int getGrade(void) const;
 
+    void executeForm(AForm const & form) const;
     void incrementGrade();
     void decrementGrade();
 

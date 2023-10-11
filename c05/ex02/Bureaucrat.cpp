@@ -1,22 +1,5 @@
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(): _name("default"), _grade(150) {
-    // default constructor
-}
-
-Bureaucrat::Bureaucrat(std::string name): _name(name), _grade(150) {
-    // name constructor
-}
-
-Bureaucrat::Bureaucrat(int grade) : _name("default") {
-    // int constructor
-    if (grade < 1)
-        throw GradeTooHighException();
-    if (grade > 150)
-        throw GradeTooLowException();
-    _grade = grade;
-}
-
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
     // name, int constructor
     if (grade < 1)
@@ -32,12 +15,11 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other) {
 }
 
 Bureaucrat::~Bureaucrat() {
-    // destructor
+    std::cout << "\033[1;31mBureaucrat " << _name << " destroyed\033[0m" << std::endl;
 }
 
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
     // assignment operator
-        this->_name = other.getName();
         this->_grade = other.getGrade();
     return (*this);
 }
@@ -56,6 +38,15 @@ std::string Bureaucrat::getName(void) const {
 int Bureaucrat::getGrade(void) const {
     // for getting the bureaucrat's grade
     return this->_grade;
+}
+
+void Bureaucrat::executeForm(const AForm &form) const {
+    try {
+        form.execute(*this);
+        std::cout << "\033[32m" << this->_name << " executed " << form.getName() << "\033[0m" << std::endl;
+    } catch (const std::exception& e) {
+        std::cerr << "\033[31m" << this->_name << " couldn't execute " << form.getName() << " because " << e.what() << "\033[0m" << std::endl;
+    }
 }
 
 void Bureaucrat::signForm(AForm &form) const {

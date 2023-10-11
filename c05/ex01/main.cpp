@@ -2,7 +2,7 @@
 #include "Bureaucrat.hpp"
 
 int main() {
-    // Create a bureaucrat with a grade of 1
+    // Create a bureaucrat with a grade of 6
     Bureaucrat b1("Marx", 6);
     std::cout << b1 << std::endl;
 
