@@ -1,5 +1,5 @@
-#include "Bureaucrat.hpp"
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 int main() {
     // Create a bureaucrat with a grade of 1
