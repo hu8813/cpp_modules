@@ -1,15 +1,15 @@
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(): _name("default"), _grade(150) {
-    // constructor
+    // default constructor
 }
 
 Bureaucrat::Bureaucrat(std::string name): _name(name), _grade(150) {
-    // constructor
+    // name constructor
 }
 
 Bureaucrat::Bureaucrat(int grade) : _name("default") {
-    // constructor
+    // int constructor
     if (grade < 1)
         throw GradeTooHighException();
     if (grade > 150)
@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(int grade) : _name("default") {
 }
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name) {
-    // constructor
+    // name, int constructor
     if (grade < 1)
         throw GradeTooHighException();
     if (grade > 150)
@@ -48,14 +48,6 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat) {
     return os;
 }
 
-void Bureaucrat::signForm(Form &form) const {
-    try {
-        form.beSigned(*this);
-        std::cout << "\033[32m" << this->_name << " signed " << form.getName() << "\033[0m" << std::endl;
-    } catch (const std::exception& e) {
-        std::cerr << "\033[31m" << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << "\033[0m" << std::endl;
-    }
-}
 std::string Bureaucrat::getName(void) const {
     // for getting the bureaucrat's name
     return this->_name;
@@ -71,6 +63,7 @@ void Bureaucrat::incrementGrade() {
     if (_grade == 1)
         throw GradeTooHighException();
     _grade--;
+    std::cout << _name << " Grade incremented to: " << _grade << std::endl;
 }
 
 void Bureaucrat::decrementGrade() {
@@ -78,6 +71,7 @@ void Bureaucrat::decrementGrade() {
     if (_grade == 150)
         throw GradeTooLowException();
     _grade++;
+    std::cout << _name << " Grade decremented to: " << _grade << std::endl;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
