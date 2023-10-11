@@ -7,6 +7,10 @@
 class AForm;
 
 class Bureaucrat {
+private:
+    const std::string _name;
+    int _grade;
+
 public:
     Bureaucrat(std::string name = "default", int grade = 150);
     Bureaucrat(const Bureaucrat& other);
@@ -30,10 +34,6 @@ public:
     public:
         virtual const char* what() const throw();
     };
-
-private:
-    std::string _name;
-    int _grade;
 };
 
 std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat);

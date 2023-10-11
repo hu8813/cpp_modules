@@ -7,6 +7,8 @@
 #include "ShrubberyCreationForm.hpp"
 
 class Intern {
+    private:
+    
     public:
         Intern();
         Intern(const Intern& other);
@@ -15,8 +17,6 @@ class Intern {
         Intern& operator=(const Intern& other);
 
         AForm* makeForm(const std::string &formName, const std::string &target);
-
-    private:
 };
 
 #endif
