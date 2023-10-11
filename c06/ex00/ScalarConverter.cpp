@@ -3,31 +3,17 @@
 #include <limits>
 #include <string>
 
-ScalarConverter::ScalarConverter() : _str("") {}
+ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::ScalarConverter(const std::string &str) : _str(str) {}
+ScalarConverter::~ScalarConverter() {
+    std::cout << "Destructor called" << std::endl;
+}
 
-ScalarConverter::~ScalarConverter() {}
+ScalarConverter::ScalarConverter(const ScalarConverter &) {}
 
-ScalarConverter::ScalarConverter(const ScalarConverter &other) : _str(other._str) {}
-
-ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
+ScalarConverter &ScalarConverter::operator=(const ScalarConverter &)
 {
-    if (this != &other)
-    {
-        _str = other._str;
-    }
     return *this;
-}
-
-void ScalarConverter::setInput(const std::string &str)
-{
-    _str = str;
-}
-
-std::string ScalarConverter::getInput() const
-{
-    return _str;
 }
 
 void ScalarConverter::convert(std::string _str)
@@ -42,13 +28,20 @@ void ScalarConverter::convert(std::string _str)
         std::cout << "double: impossible" << std::endl;
         return;
     }
-    // check if its nan or nanf
-    if (_str == "nan" || _str == "nanf")
+    else if (_str == "nan" || _str == "nanf")
     {
         std::cout << "char: impossible" << std::endl;
         std::cout << "int: impossible" << std::endl;
         std::cout << "float: nanf" << std::endl;
         std::cout << "double: nan" << std::endl;
+        return;
+    }
+    else if (_str == "-inf" || _str == "+inf" || _str == "inf" || _str == "-inff" || _str == "+inff" || _str == "inff")
+    {
+        std::cout << "char: impossible" << std::endl;
+        std::cout << "int: impossible" << std::endl;
+        std::cout << "float: " << _str << std::endl;
+        std::cout << "double: " << _str.substr(0, _str.length() - 1) << std::endl;
         return;
     }
 
