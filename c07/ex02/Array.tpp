@@ -19,6 +19,7 @@ Array<T>::Array(const Array& other) : _size(other._size), _array(new T[other._si
 // Destructor
 template<typename T>
 Array<T>::~Array() {
+    if (_size > 0 && _array)
     delete[] _array;
 }
 
