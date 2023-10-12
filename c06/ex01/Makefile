@@ -4,7 +4,8 @@ CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP -pedantic
 TARGET := serializer
 
 SRCS := main.cpp \
-		Serializer.cpp
+		Serializer.cpp \
+		Data.cpp
 
 OBJDIR := .obj
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))

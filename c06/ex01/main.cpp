@@ -1,22 +1,18 @@
 #include <iostream>
 #include <fstream>
+#include "Data.hpp"
 #include "Serializer.hpp"
 
 int main()
 {
-    Data *data = new Data;
+    Data *data = new Data("Hello", 42, "World");
     uintptr_t raw;
     
-    data->s1 = "Hello";
-    data->n = 42;
-    data->s2 = "World";
-
-    std::cout << "Data: " << data->s1 << " " << data->n << " " << data->s2 << std::endl;
+    std::cout << "Data: " << data->getS1() << " " << data->getN() << " " << data->getS2() << std::endl;
     raw = Serializer::serialize(data);
     std::cout << "Raw: " << raw << std::endl;
     data = Serializer::deserialize(raw);
-    std::cout << "Data: " << data->s1 << " " << data->n << " " << data->s2 << std::endl;
-
+    std::cout << "Data: " << data->getS1() << " " << data->getN() << " " << data->getS2() << std::endl;
 
     return 0;
 }
