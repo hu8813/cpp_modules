@@ -10,12 +10,21 @@ Base *generate(void)
 {
     int i = rand() % 3;
 
-    if (i == 0)
+    switch (i)
+    {
+    case 0:
         return new A();
-    else if (i == 1)
+        break;
+    case 1:
         return new B();
-    else
+        break;
+    case 2:
         return new C();
+        break;
+    default:
+        return new A();
+        break;
+    }
 }
 
 void identify(Base *p)
@@ -30,27 +39,39 @@ void identify(Base *p)
         std::cout << "Unknown pointer Type" << std::endl;
 }
 
-void identify(Base &p)
-{
-    if (dynamic_cast<A *>(&p))
-        std::cout << "Type of reference is:\t A" << std::endl;
-    else if (dynamic_cast<B *>(&p))
-        std::cout << "Type of reference is:\t B" << std::endl;
-    else if (dynamic_cast<C *>(&p))
-        std::cout << "Type of reference is:\t C" << std::endl;
-    else
-        std::cout << "Unknown reference Type" << std::endl;
+void identify(Base &p) {
+    try {
+        if (dynamic_cast<A*>(&p)) {
+            std::cout << "Type of reference is:\t A" << std::endl;
+        } else if (dynamic_cast<B*>(&p)) {
+            std::cout << "Type of reference is:\t B" << std::endl;
+        } else if (dynamic_cast<C*>(&p)) {
+            std::cout << "Type of reference is:\t C" << std::endl;
+        } else {
+            std::cout << "Unknown reference Type" << std::endl;
+        }
+    } catch (std::exception& e) {
+        std::cout << "Exception: Unable to cast the reference to the desired type." << std::endl;
+    }
 }
 
 int main()
 {
-    std::srand(std::time(NULL));
-    for (int i=0; i<5; i++)
-    {
-        Base *base = generate();
-        identify(base);
-        identify(*base);
-        delete base;
+    try {
+        std::srand(std::time(NULL));
+        for (int i=0; i<5; i++)
+        {
+            Base *base = generate();
+            try {
+                identify(base);
+                identify(*base);
+            } catch (std::exception& e) {
+                std::cerr << "Exception caught: " << e.what() << std::endl;
+            }
+            delete base;
+        }
+    } catch (std::exception& e) {
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     return 0;

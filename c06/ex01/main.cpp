@@ -13,6 +13,7 @@ int main()
     std::cout << "Raw: " << raw << std::endl;
     data = Serializer::deserialize(raw);
     std::cout << "Data: " << data->getS1() << " " << data->getN() << " " << data->getS2() << std::endl;
-
+    delete data;
+    
     return 0;
 }
