@@ -3,15 +3,25 @@
 #include <iostream>
 
 template<typename T>
-void iter(T *arr, size_t len, void (*f)(T &)) {
-    for (size_t i = 0; i < len; i++) {
+void iter(T *arr, int len, void (*f)(T &)) {
+    if (len <= 0)
+    {
+        std::cerr << "\033[1;31mError:\033[0m len must be > 0" << std::endl;
+        return;
+    }
+    for (int i = 0; i < len; i++) {
         f(arr[i]);
     }
 }
 
 template<typename T>
-void iter(const T *arr, size_t len, void (*f)(T const &)) {
-    for (size_t i = 0; i < len; i++) {
+void iter(const T *arr, int len, void (*f)(T const &)) {
+    if (len <= 0)
+    {
+        std::cerr << "\033[1;31mError:\033[0m len must be > 0" << std::endl;
+        return;
+    }
+    for (int i = 0; i < len; i++) {
         f(arr[i]);
     }
 }

@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Array.hpp"
 
 // Default constructor
@@ -41,7 +43,7 @@ Array<T>& Array<T>::operator=(const Array& other) {
 template<typename T>
 T& Array<T>::operator[](unsigned int index) {
     if (index >= _size) {
-        throw std::out_of_range("Index out of range");
+        throw OutOfBounds();
     }
     return _array[index];
 }
@@ -50,7 +52,7 @@ T& Array<T>::operator[](unsigned int index) {
 template<typename T>
 const T& Array<T>::operator[](unsigned int index) const {
     if (index >= _size) {
-        throw std::out_of_range("Index out of range");
+        throw OutOfBounds();
     }
     return _array[index];
 }
@@ -59,4 +61,10 @@ const T& Array<T>::operator[](unsigned int index) const {
 template<typename T>
 unsigned int Array<T>::size() const {
     return _size;
+}
+
+// OutOfBoundsException class
+template<typename T>
+const char* Array<T>::OutOfBounds::what() const throw() {
+    return "Index out of bounds";
 }

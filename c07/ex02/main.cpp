@@ -50,19 +50,18 @@ int main(int, char**)
         numbers[i] = std::rand();
     }
     delete [] mirror;//
-    return 0;
 }
 {
         Array<int> intArray(5);
 
     // Set values in the array
-    for (unsigned int i = 0; i < intArray.size(); i++)
+    for (unsigned int i = 0; i < 5; i++)
     {
         intArray[i] = i;
     }
 
     // Print the values in the array
-    for (unsigned int i = 0; i < intArray.size(); i++)
+    for (unsigned int i = 0; i < 5; i++)
     {
         std::cout << intArray[i] << " ";
     }
@@ -77,10 +76,19 @@ int main(int, char**)
     stringArray[2] = "!";
 
     // Print the values in the array
-    for (unsigned int i = 0; i < stringArray.size(); i++)
+    try
     {
-        std::cout << stringArray[i] << " ";
+        for (unsigned int i = 0; i < 4; i++)
+        {
+            std::cout << stringArray[i] << " ";
+        }
     }
+    catch(const std::exception& e)
+    {
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
+    }
+    
+    
     std::cout << std::endl;
 
     // Try to access an out-of-bounds index
@@ -90,7 +98,7 @@ int main(int, char**)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
     }
 }
 }
