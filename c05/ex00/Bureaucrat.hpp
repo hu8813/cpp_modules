@@ -9,6 +9,7 @@ private:
     int _grade;
 
 public:
+    Bureaucrat();
     Bureaucrat(std::string name = "default", int grade = 150);
     Bureaucrat(const Bureaucrat& other);
     ~Bureaucrat();
