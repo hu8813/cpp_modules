@@ -4,9 +4,9 @@
 
 template<typename T>
 void iter(T *arr, int len, void (*f)(T &)) {
-    if (len <= 0)
+    if (len < 0)
     {
-        std::cerr << "\033[1;31mError:\033[0m len must be > 0" << std::endl;
+        std::cerr << "\033[1;31mError:\033[0m len must be positive" << std::endl;
         return;
     }
     for (int i = 0; i < len; i++) {
@@ -16,9 +16,9 @@ void iter(T *arr, int len, void (*f)(T &)) {
 
 template<typename T>
 void iter(const T *arr, int len, void (*f)(T const &)) {
-    if (len <= 0)
+    if (len < 0)
     {
-        std::cerr << "\033[1;31mError:\033[0m len must be > 0" << std::endl;
+        std::cerr << "\033[1;31mError:\033[0m len must be positive" << std::endl;
         return;
     }
     for (int i = 0; i < len; i++) {

@@ -5,6 +5,16 @@
 int main(int, char**)
 {
 {
+    Array<int> numb;
+    try
+    {
+        numb[0] = 42;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
+    }
+    
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     std::srand(time(NULL));
@@ -34,7 +44,7 @@ int main(int, char**)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
     }
     try
     {
@@ -42,7 +52,7 @@ int main(int, char**)
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
     }
 
     for (int i = 0; i < MAX_VAL; i++)
@@ -61,11 +71,8 @@ int main(int, char**)
     }
 
     // Print the values in the array
-    for (unsigned int i = 0; i < 5; i++)
-    {
-        std::cout << intArray[i] << " ";
-    }
-    std::cout << std::endl;
+    
+    std::cout << intArray << std::endl;
 
     // Create an array of strings with size 3
     Array<std::string> stringArray(3);

@@ -68,3 +68,13 @@ template<typename T>
 const char* Array<T>::OutOfBounds::what() const throw() {
     return "Index out of bounds";
 }
+
+// Operator<< overload
+template <typename T>
+std::ostream&	operator<<(std::ostream& stream, const Array<T>& array) {
+	for (size_t i = 0; i < array.size(); i++) {
+		std::cout << array[i] << " " ;
+	}
+    std::cout << std::endl;
+	return (stream);
+}

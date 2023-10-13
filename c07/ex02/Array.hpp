@@ -29,4 +29,7 @@ private:
     T* _array;
 };
 
+template <typename T>
+std::ostream&	operator<<(std::ostream& stream, const Array<T>& array);
+
 #include "Array.tpp"
