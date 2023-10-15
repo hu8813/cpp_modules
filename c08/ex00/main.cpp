@@ -18,7 +18,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
     }
 
     // Test with std::deque
@@ -36,7 +36,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
     }
 
     // Test with std::list
@@ -53,7 +53,7 @@ int main()
     }
     catch (std::exception &e)
     {
-        std::cout << e.what() << std::endl;
+        std::cerr << "\033[1;31mError:\033[0m " << e.what() << std::endl;
     }
 
     return 0;
