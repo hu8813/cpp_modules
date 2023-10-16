@@ -40,13 +40,19 @@ int Span::shortestSpan() const {
     std::multiset<int> sortedNumbers(_numbers);
     std::multiset<int>::iterator it = sortedNumbers.begin();
     int shortest = std::abs(*it - *(++it));
-    for (; it != sortedNumbers.end(); ++it) {
-        int diff = std::abs(*it - *(--it));
+    if (it != sortedNumbers.end()) {
+    std::multiset<int>::iterator next = it;
+    ++next; // Advance 'next' to the next element
+    while (next != sortedNumbers.end()) {
+        int diff = std::abs(*next - *it);
         if (diff < shortest) {
             shortest = diff;
         }
         ++it;
+        ++next;
     }
+}
+
     return shortest;
 }
 
