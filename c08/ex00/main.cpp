@@ -9,6 +9,10 @@ int main()
     v.push_back(3);
     v.push_back(4);
     v.push_back(5);
+    v.pop_back();
+    v.insert(v.begin(), 0);
+    v.insert(v.end(), 6);
+    v[0] = 0;
 
     try
     {
@@ -28,6 +32,13 @@ int main()
     d.push_back(8);
     d.push_back(9);
     d.push_back(10);
+    d.pop_back();
+    d.push_back(10);
+    d.pop_front();
+    d.push_front(6);
+    d.insert(d.begin(), 5);
+    d.insert(d.end(), 10);
+    d[0] = 5;
 
     try
     {
@@ -44,7 +55,9 @@ int main()
     std::list<int> l;
     for (int i = 11; i <= 15; i++)
     {
-        l.push_back(i);
+        l.push_back(i*2);
+        l.push_front(i);
+        //l.insert(i, i); // insert not supported in list
     }
 
     try
@@ -63,6 +76,7 @@ int main()
     for (int i = 11; i <= 15; i++)
     {
         m.insert(i);
+        // m.push_back(5); // not supported in set or multiset
     }
 
     try
@@ -83,6 +97,7 @@ int main()
     for (int i = 11; i <= 15; i++)
     {
         n.insert(i);
+        // m.push_back(5); // not supported in set or multiset
     }
 
     try
