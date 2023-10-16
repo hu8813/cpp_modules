@@ -1,5 +1,5 @@
 CXX := c++
-CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP
+CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP -pedantic
 
 TARGET := point
 

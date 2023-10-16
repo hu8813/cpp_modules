@@ -50,6 +50,11 @@
         "iomanip": "cpp",
         "numbers": "cpp",
         "ranges": "cpp",
-        "sstream": "cpp"
+        "sstream": "cpp",
+        "list": "cpp",
+        "cinttypes": "cpp",
+        "*.tpp": "cpp",
+        "stack": "cpp",
+        "set": "cpp"
     }
 }

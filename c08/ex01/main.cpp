@@ -55,7 +55,7 @@ int main() {
     {
         Span span5(6);
         span5.addNumber(41);
-        span5.addNumber(42);
+        span5.addNumber(142);
         span5.addNumber(46);
 
         try {
@@ -71,7 +71,7 @@ int main() {
         }
     }
     {
-        Span span6(15001);
+        Span span6(15000);
         std::vector<int> v(15000);
         for (int i = 0; i < 15000; i++) {
             v[i] = i;
