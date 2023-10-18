@@ -12,6 +12,8 @@ int main()
     v.pop_back();
     v.insert(v.begin(), 0);
     v.insert(v.end(), 6);
+    //v.push_front(0);  // not supported in vector
+    //v.pop_front();  // not supported in vector
     v[0] = 0;
 
     try

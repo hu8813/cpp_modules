@@ -1,11 +1,9 @@
 #pragma once
 
 #include <set>
-#include <algorithm>
-#include <stdexcept>
-#include <cassert>
 #include <iostream>
 #include <vector>
+#include <algorithm> // for "abs"
 
 class Span {
 public:

@@ -1,9 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include <algorithm>
-#include <iterator>
-#include <exception>
+#include <algorithm> // for "find"
 #include <vector>
 #include <deque>
 #include <list>
