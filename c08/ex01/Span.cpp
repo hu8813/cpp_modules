@@ -37,13 +37,12 @@ int Span::shortestSpan() const {
     if (_numbers.size() < 2) {
         throw std::out_of_range("Span must contain at least 2 numbers");
     }
-    std::multiset<int> sortedNumbers(_numbers);
-    std::multiset<int>::iterator it = sortedNumbers.begin();
+    std::multiset<int>::iterator it = _numbers.begin();
     int shortest = std::abs(*it - *(++it));
-    if (it != sortedNumbers.end()) {
+    if (it != _numbers.end()) {
     std::multiset<int>::iterator next = it;
-    ++next; // Advance 'next' to the next element
-    while (next != sortedNumbers.end()) {
+    ++next;
+    while (next != _numbers.end()) {
         int diff = std::abs(*next - *it);
         if (diff < shortest) {
             shortest = diff;

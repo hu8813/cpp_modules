@@ -10,9 +10,11 @@ int main()
         mstack.push(5);
         mstack.push(17);
 
+        if (!mstack.empty())
+        {
         std::cout << "Top element: " << mstack.top() << std::endl;
-
         mstack.pop();
+        }
 
         std::cout << "Size: " << mstack.size() << std::endl;
 
@@ -38,9 +40,11 @@ int main()
         mstack.push_back(5);
         mstack.push_back(17);
 
+        if (!mstack.empty())
+        {
         std::cout << "Top element: " << mstack.back() << std::endl;
-
         mstack.pop_back();
+        }
 
         std::cout << "Size: " << mstack.size() << std::endl;
 
@@ -67,9 +71,11 @@ int main()
         mstack.push_back(5);
         mstack.push_back(17);
 
+        if (!mstack.empty())
+        {
         std::cout << "Top element: " << mstack.back() << std::endl;
-
         mstack.pop_back();
+        }
 
         std::cout << "Size: " << mstack.size() << std::endl;
 
@@ -96,9 +102,11 @@ int main()
         mstack.push_back(5);
         mstack.push_back(17);
 
+        if (!mstack.empty())
+        {
         std::cout << "Top element: " << mstack.back() << std::endl;
-
         mstack.pop_back();
+        }
 
         std::cout << "Size: " << mstack.size() << std::endl;
 
