@@ -7,7 +7,7 @@
 #include <vector>
 
 template <typename T>
-class MutantStack : public std::stack<T, std::deque<T> > {
+class MutantStack : public std::stack<T> {
 public:
     typedef typename std::deque<T>::iterator iterator;
     typedef typename std::deque<T>::const_iterator const_iterator;
