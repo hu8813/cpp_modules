@@ -1,11 +1,10 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP -pedantic
 
-TARGET := form
+TARGET := btc
 
 SRCS := main.cpp \
-		Bureaucrat.cpp \
-		Form.cpp
+		BitcoinExchange.cpp
 
 OBJDIR := .obj
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
