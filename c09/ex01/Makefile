@@ -1,11 +1,10 @@
 CXX := c++
 CXXFLAGS := -std=c++98 -Wall -Wextra -Werror -MMD -MP -pedantic
 
-TARGET := form
+TARGET := RPN
 
 SRCS := main.cpp \
-		Bureaucrat.cpp \
-		Form.cpp
+		RPN.cpp
 
 OBJDIR := .obj
 OBJS := $(addprefix $(OBJDIR)/,$(SRCS:.cpp=.o))
