@@ -17,10 +17,9 @@ bool parseAndStoreNumbers(int argc, char *argv[], std::vector<int>& vec, std::li
         while (argv[i][j] != '\0')
         {
             if ((!(isdigit(argv[i][j])) && (argv[i][j] != ' ')
-			&& (argv[i][j] != '-' && argv[i][j] != '+' && argv[i][j] != ' '))
-			|| (argv[i][j] == '-' && argv[i][j + 1] == '\0')
-			|| (argv[i][j] == '+' && argv[i][j + 1] == '\0')
-			|| (argv[i][j] == '-' && argv[i][j + 1] == ' ')
+			&& (argv[i][j] != '+' && argv[i][j] != ' '))
+			|| (argv[i][j] == '-')
+            || (argv[i][j] == '+' && argv[i][j + 1] == '\0')
 			|| (argv[i][j] == '+' && argv[i][j + 1] == ' '))
             {
                 std::cout << "Error\n";
