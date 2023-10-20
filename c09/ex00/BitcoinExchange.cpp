@@ -4,7 +4,7 @@ BitcoinExchange::BitcoinExchange() {}
 
 bool BitcoinExchange::loadPrices(const std::string& filename) {
     std::ifstream file(filename.c_str());
-    if (!file.is_open()) {
+    if (file.fail() || !file.is_open()) {
         return false;
     }
 
@@ -21,7 +21,8 @@ bool BitcoinExchange::loadPrices(const std::string& filename) {
         }
     }
 
-    file.close();
+    if (file.is_open())
+        file.close();
     return true;
 }
 
@@ -42,7 +43,7 @@ double BitcoinExchange::getPriceForDate(const std::string& date) const {
         std::cout << "Error: not a positive number." << std::endl;
         return price;
     }
-    if (price > 9999999) {
+    if (price > 2147483647) {
         std::cout << "Error: too large a number." << std::endl;
         return price;
     }
