@@ -1,55 +1,61 @@
 #include "PmergeMe.hpp"
 
-bool parseAndStoreNumbers(int argc, char *argv[], std::vector<int>& numVector)
+bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
 {
-    int i = 0;
-    while (++i < argc)
+    std::string args;
+    for (int i = 1; i < argc; i++)
     {
-        int j = 0;
-        if (!argv[i][0] || (argv[i][0] && argv[i][0] == ' '))
+        if (i == 1)
+            args = argv[1];
+        else
+            args = args + " " + argv[i];
+    }
+    int j = 0;
+
+    while (args[j] != '\0')
+    {
+        if ((!(isdigit(args[j])) && (args[j] != ' ')
+            && (args[j] != '+' && args[j] != ' '))
+            || (args[j] == '-')
+            || (args[j] == '+' && args[j + 1] == '\0')
+            || (args[j] == '+' && args[j + 1] == ' '))
         {
             std::cout << "Error\n";
             return false;
         }
+        j++;
+    }
 
-        while (argv[i][j] != '\0')
+    int num;
+    std::istringstream iss(args);
+    while (!iss.eof() && iss.good())
+    {
+    try
+    {
+        if (!(iss >> num))
         {
-            if ((!(isdigit(argv[i][j])) && (argv[i][j] != ' ')
-                && (argv[i][j] != '+' && argv[i][j] != ' '))
-                || (argv[i][j] == '-')
-                || (argv[i][j] == '+' && argv[i][j + 1] == '\0')
-                || (argv[i][j] == '+' && argv[i][j + 1] == ' '))
-            {
-                std::cout << "Error\n";
-                return false;
-            }
-            j++;
-        }
-
-        int num;
-        std::istringstream iss(argv[i]);
-
-        try
-        {
-            if (!(iss >> num))
-            {
-                std::cout << "Error: Invalid number format." << std::endl;
-                return false;
-            }
-        }
-        catch (const std::exception& e)
-        {
-            std::cout << "Error: " << e.what() << std::endl;
+            std::cout << "Error: Invalid number format." << std::endl;
             return false;
         }
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Error: " << e.what() << std::endl;
+        return false;
+    }
 
-        if (std::find(numVector.begin(), numVector.end(), num) != numVector.end())
-        {
-            std::cout << "Error: Duplicate number found." << std::endl;
-            return false;
-        }
+    if (std::find(numVector.begin(), numVector.end(), num) != numVector.end())
+    {
+        std::cout << "Error: Duplicate number found." << std::endl;
+        return false;
+    }
 
-        numVector.push_back(num);
+    numVector.push_back(num);
+    }
+    if (numVector.size() < 2)
+    {
+        std::cout << "Error: At least 2 numbers are required as an argument." << std::endl;
+        return false;
     }
     return true;
 }
@@ -57,7 +63,7 @@ bool parseAndStoreNumbers(int argc, char *argv[], std::vector<int>& numVector)
 int main(int argc, char *argv[])
 {
     clock_t parsingStart = clock();
-    if (argc < 3)
+    if (argc < 2)
     {
         std::cout << "Error: At least 2 numbers are required as an argument." << std::endl;
         return 1;
@@ -73,8 +79,8 @@ int main(int argc, char *argv[])
     clock_t parsingTime = clock() - parsingStart;
     // Sorting and data management with a vector
     {
-        std::vector<int> vec;
         clock_t startSortVec = clock();
+        std::vector<int> vec;
         for (std::vector<int>::iterator it = numVector.begin(); it != numVector.end(); ++it)
         {
             vec.push_back(*it);
