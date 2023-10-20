@@ -52,6 +52,7 @@ bool isValidInput(const std::string& input) {
     int dotCount = 0;
     int pipeCount = 0;
     int dashCount = 0;
+    int spaceCount = 0;
     
     for (size_t i = 0; i < input.size(); i++) {
         if (input[i] == '.') {
@@ -62,6 +63,11 @@ bool isValidInput(const std::string& input) {
         } else if (input[i] == '|') {
             pipeCount++;
             if (pipeCount > 1) {
+                return false;
+            }
+        } else if (input[i] == ' ') {
+            spaceCount++;
+            if (spaceCount > 2) {
                 return false;
             }
         } else if ( i < 10 && input[i] == '-') {
@@ -127,17 +133,17 @@ int main(int argc, char* argv[]) {
                 char delimiter;
                 double value;
                 ss >> dateStr >> delimiter >> value;
-                dateStr.erase(std::remove(dateStr.begin(), dateStr.end(), ' '), dateStr.end());
-                if (ss.fail() || delimiter != '|') {
+                
+                if (ss.fail() || delimiter != '|' || !ss.eof()) {
                     std::cout << "Error: bad input => " <<  line << std::endl;
                     continue;
                 }
+                dateStr.erase(std::remove(dateStr.begin(), dateStr.end(), ' '), dateStr.end());
                 std::string valueStr = line.substr(pos + 1);
                 
                 valueStr.erase(std::remove(valueStr.begin(), valueStr.end(), ' '), valueStr.end());
-                if (valueStr[0] == '.')
-                {
-                    std::cout << "Error: bad input => " <<  valueStr << std::endl;
+                if ((valueStr[0] && !isdigit(valueStr[0])) || valueStr.find(" ") != std::string::npos) {
+                    std::cout << "Error: bad input => " <<  line << std::endl;
                     continue;
                 }
                 if (value <= 0) {
