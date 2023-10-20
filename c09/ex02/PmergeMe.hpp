@@ -8,6 +8,7 @@
 #include <ctime>
 #include <cctype>
 #include <set>
+#include <algorithm>
 
 void mergeInsertSort(std::vector<int>& vec);
 
