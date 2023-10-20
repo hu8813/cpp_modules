@@ -20,7 +20,7 @@ bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
             || (args[j] == '+' && args[j + 1] == '\0')
             || (args[j] == '+' && args[j + 1] == ' '))
         {
-            std::cout << "Error\n";
+            std::cerr << "Error\n";
             return false;
         }
         j++;
@@ -34,19 +34,19 @@ bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
     {
         if (!(iss >> num))
         {
-            std::cout << "Error: Invalid number format." << std::endl;
+            std::cerr << "Error: Invalid number format." << std::endl;
             return false;
         }
     }
     catch (const std::exception& e)
     {
-        std::cout << "Error: " << e.what() << std::endl;
+        std::cerr << "Error:\n" << e.what() << std::endl;
         return false;
     }
 
     if (std::find(numVector.begin(), numVector.end(), num) != numVector.end())
     {
-        std::cout << "Error: Duplicate number found." << std::endl;
+        std::cerr << "Error:\nDuplicate number found." << std::endl;
         return false;
     }
 
@@ -54,7 +54,7 @@ bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
     }
     if (numVector.size() < 2)
     {
-        std::cout << "Error: At least 2 numbers are required as an argument." << std::endl;
+        std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
         return false;
     }
     return true;
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
     clock_t parsingStart = clock();
     if (argc < 2)
     {
-        std::cout << "Error: At least 2 numbers are required as an argument." << std::endl;
+        std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
         return 1;
     }
 
