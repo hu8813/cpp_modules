@@ -8,6 +8,16 @@ PmergeMe::~PmergeMe()
 {
 }
 
+PmergeMe::PmergeMe(const PmergeMe &other)
+{
+    *this = other;
+}
+
+PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+{
+    return *this;
+}
+
 bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec)
 {
     std::string args;
