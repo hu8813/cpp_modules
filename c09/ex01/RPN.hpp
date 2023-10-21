@@ -7,12 +7,13 @@
 #include <sstream>
 #include <stdexcept>
 
-class RPN {
+class RPN
+{
 public:
     RPN();
     ~RPN();
 
-    double evaluate(const std::string& expression);
+    double evaluate(const std::string &expression);
 
 private:
     bool isOperator(const char ch) const;
@@ -20,4 +21,3 @@ private:
 
     std::stack<double> values;
 };
-
