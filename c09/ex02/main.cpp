@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 
-bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
+bool parseAndStoreNumbers(int argc, char **argv, std::vector<int> &numVector)
 {
     std::string args;
     for (int i = 1; i < argc; i++)
@@ -14,11 +14,7 @@ bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
 
     while (args[j] != '\0')
     {
-        if ((!(isdigit(args[j])) && (args[j] != ' ')
-            && (args[j] != '+' && args[j] != ' '))
-            || (args[j] == '-')
-            || (args[j] == '+' && args[j + 1] == '\0')
-            || (args[j] == '+' && args[j + 1] == ' '))
+        if ((!(isdigit(args[j])) && (args[j] != ' ') && (args[j] != '+' && args[j] != ' ')) || (args[j] == '-') || (args[j] == '+' && args[j + 1] == '\0') || (args[j] == '+' && args[j + 1] == ' '))
         {
             std::cerr << "Error\n";
             return false;
@@ -30,27 +26,28 @@ bool parseAndStoreNumbers(int argc, char **argv, std::vector<int>& numVector)
     std::istringstream iss(args);
     while (!iss.eof() && iss.good())
     {
-    try
-    {
-        if (!(iss >> num))
+        try
         {
-            std::cerr << "Error: Invalid number format." << std::endl;
+            if (!(iss >> num))
+            {
+                std::cerr << "Error: Invalid number format." << std::endl;
+                return false;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Error:\n"
+                      << e.what() << std::endl;
             return false;
         }
-    }
-    catch (const std::exception& e)
-    {
-        std::cerr << "Error:\n" << e.what() << std::endl;
-        return false;
-    }
 
-    if (std::find(numVector.begin(), numVector.end(), num) != numVector.end())
-    {
-        std::cerr << "Error:\nDuplicate number found." << std::endl;
-        return false;
-    }
+        if (std::find(numVector.begin(), numVector.end(), num) != numVector.end())
+        {
+            std::cerr << "Error:\nDuplicate number found." << std::endl;
+            return false;
+        }
 
-    numVector.push_back(num);
+        numVector.push_back(num);
     }
     if (numVector.size() < 2)
     {
@@ -87,14 +84,15 @@ int main(int argc, char *argv[])
         }
         mergeInsertSort(vec);
         clock_t endSortVec = clock();
-        
+
         std::cout << "Before: ";
         for (std::vector<int>::iterator it = numVector.begin(); it != numVector.end(); ++it)
         {
             std::cout << *it << " ";
         }
 
-        std::cout << std::endl << "After: ";
+        std::cout << std::endl
+                  << "After: ";
         for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
         {
             std::cout << *it << " ";
