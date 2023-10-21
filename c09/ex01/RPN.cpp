@@ -8,6 +8,16 @@ RPN::~RPN()
 {
 }
 
+RPN::RPN(const RPN &other)
+{
+    *this = other;
+}
+
+RPN &RPN::operator=(const RPN &)
+{
+    return *this;
+}
+
 double RPN::evaluate(const std::string &expression)
 {
     std::istringstream iss(expression);
