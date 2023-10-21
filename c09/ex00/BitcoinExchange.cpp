@@ -11,10 +11,10 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
 
 BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
     if (this != &other) {
-        btcPrices.clear();
+        _btcPrices.clear();
 
-        for (std::map<std::string, double>::const_iterator it = other.btcPrices.begin(); it != other.btcPrices.end(); ++it) {
-            btcPrices[it->first] = it->second;
+        for (std::map<std::string, double>::const_iterator it = other._btcPrices.begin(); it != other._btcPrices.end(); ++it) {
+            _btcPrices[it->first] = it->second;
         }
     }
     
@@ -173,7 +173,7 @@ bool BitcoinExchange::loadPrices(const std::string &filename)
         }
         if (price >= 0)
         {
-            btcPrices[dateStr] = price;
+            _btcPrices[dateStr] = price;
         }
     }
 
@@ -184,19 +184,19 @@ bool BitcoinExchange::loadPrices(const std::string &filename)
 
 double BitcoinExchange::getPriceForDate(const std::string &date) const
 {
-    std::map<std::string, double>::const_iterator it = btcPrices.find(date);
-    if (date < btcPrices.begin()->first)
+    std::map<std::string, double>::const_iterator it = _btcPrices.find(date);
+    if (date < _btcPrices.begin()->first)
     {
-        return btcPrices.begin()->second;
+        return _btcPrices.begin()->second;
     }
-    else if (date > btcPrices.rbegin()->first)
+    else if (date > _btcPrices.rbegin()->first)
     {
-        return btcPrices.rbegin()->second;
+        return _btcPrices.rbegin()->second;
     }
-    if (it == btcPrices.end())
+    if (it == _btcPrices.end())
     {
-        it = btcPrices.lower_bound(date);
-        if (it != btcPrices.begin())
+        it = _btcPrices.lower_bound(date);
+        if (it != _btcPrices.begin())
         {
             --it;
         }

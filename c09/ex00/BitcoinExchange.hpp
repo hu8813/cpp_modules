@@ -24,5 +24,5 @@ public:
     std::string formatDouble(double value);
 
 private:
-    std::map<std::string, double> btcPrices;
+    std::map<std::string, double> _btcPrices;
 };

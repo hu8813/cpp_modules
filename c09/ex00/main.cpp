@@ -98,10 +98,6 @@ int main(int argc, char *argv[])
                 }
 
                 double exchangeRate = exchange.getPriceForDate(dateStr);
-                if (exchangeRate == 0.0)
-                {
-                    exchangeRate = exchange.getPriceForDate("2009-01-02");
-                }
                 if (exchangeRate >= 0)
                 {
                     std::cout << dateStr << " => " << std::fixed << exchange.formatDouble(value);
