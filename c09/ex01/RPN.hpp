@@ -16,7 +16,8 @@ public:
     RPN(const RPN &other);
     RPN &operator=(const RPN &other);
 
-    double evaluate(const std::string &expression);
+    double evaluate(const std::string &args);
+    bool checkArgs(const std::string &args);
 
 private:
     bool isOperator(const char ch) const;

@@ -9,17 +9,21 @@ int main(int argc, char *argv[])
     }
 
     RPN calculator;
-    std::string expression = argv[1];
+    std::string args = argv[1];
 
-    try
+    if (!calculator.checkArgs(args))
+        std::cerr << "Error" << std::endl;
+    else
     {
-        double result = calculator.evaluate(expression);
-        std::cout << result << std::endl;
+        try
+        {
+            double result = calculator.evaluate(args);
+            std::cout << result << std::endl;
+        }
+        catch (const std::exception &)
+        {
+            std::cerr << "Error" << std::endl;
+        }
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << "Error: " << e.what() << std::endl;
-    }
-
     return 0;
 }

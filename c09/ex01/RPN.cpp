@@ -37,52 +37,6 @@ RPN &RPN::operator=(const RPN &other)
     return *this;
 }
 
-
-double RPN::evaluate(const std::string &expression)
-{
-    std::istringstream iss(expression);
-    std::string token;
-    while (iss >> token)
-    {
-        if (isOperator(token[0]))
-        {
-            if (values.size() < 2)
-            {
-                throw std::runtime_error("Invalid RPN expression");
-            }
-            double b = values.top();
-            values.pop();
-            double a = values.top();
-
-            values.pop();
-            values.push(performOperation(token[0], a, b));
-        }
-        else
-        {
-            double value;
-            try
-            {
-                std::istringstream iss(token);
-                iss >> value;
-                if (value < 0 || value >= 10)
-                {
-                    throw std::runtime_error("Invalid RPN expression");
-                }
-                values.push(value);
-            }
-            catch (const std::exception &e)
-            {
-                throw;
-            }
-        }
-    }
-    if (values.size() != 1)
-    {
-        throw std::runtime_error("Invalid RPN expression");
-    }
-    return values.top();
-}
-
 bool RPN::isOperator(const char ch) const
 {
     return ch == '+' || ch == '-' || ch == '*' || ch == '/';
@@ -101,10 +55,77 @@ double RPN::performOperation(const char op, double a, double b)
     case '/':
         if (b == 0)
         {
-            throw std::runtime_error("Division by zero");
+            throw std::runtime_error("");
         }
         return a / b;
     default:
-        throw std::runtime_error("Unknown operator");
+        throw;
     }
+}
+
+bool RPN::checkArgs(const std::string &args)
+{
+    int j = 0;
+
+    while (args[j] != '\0')
+    {
+        if ((!isdigit(args[j]) && args[j] != ' ' && args[j] != '-' && args[j] != '+' && args[j] != '*' && args[j] != '/')
+        || (args[j] == '-' && (args[j + 1] && (args[j + 1] != ' ' && args[j + 1] != '\0')))
+        || (args[j] == '*' && (args[j + 1] && (args[j + 1] != ' ' && args[j + 1] != '\0')))
+        || (args[j] == '/' && (args[j + 1] && (args[j + 1] != ' ' && args[j + 1] != '\0')))
+        || (args[j] == '+' && (args[j + 1] && (args[j + 1] != ' ' && args[j + 1] != '\0'))))
+        {
+            return false;
+        }
+        j++;
+    }
+    return true;
+}
+
+double RPN::evaluate(const std::string &args)
+{
+    std::istringstream iss(args);
+    std::string token;
+
+
+
+    while (iss >> token)
+    {
+        if (isOperator(token[0]))
+        {
+            if (values.size() < 2)
+            {
+                throw std::runtime_error("");
+            }
+            double b = values.top();
+            values.pop();
+            double a = values.top();
+
+            values.pop();
+            values.push(performOperation(token[0], a, b));
+        }
+        else
+        {
+            double value;
+            try
+            {
+                std::istringstream iss(token);
+                iss >> value;
+                if (value < 0 || value >= 10)
+                {
+                    throw std::runtime_error("");
+                }
+                values.push(value);
+            }
+            catch (const std::exception &e)
+            {
+                throw std::runtime_error("");
+            }
+        }
+    }
+    if (values.size() != 1)
+    {
+        throw std::runtime_error("");
+    }
+    return values.top();
 }
