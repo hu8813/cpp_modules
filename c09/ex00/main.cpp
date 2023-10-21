@@ -1,89 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-bool isDateValid(const std::string& dateStr) {
-    if (dateStr.size() != 10) {
-        return false;
-    }
-    if (dateStr[4] != '-' || dateStr[7] != '-') {
-        return false;
-    }
-    int year = 0, month = 0, day = 0;
-    std::istringstream(dateStr.substr(0, 4)) >> year;
-    std::istringstream(dateStr.substr(5, 2)) >> month;
-    std::istringstream(dateStr.substr(8, 2)) >> day;
-    if (month < 1 || month > 12 || day < 1 || day > 31 || year < 2000) {
-        return false;
-    }
-    if ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) {
-        return false;
-    }
-    if (month == 2) {
-        if (day > 29) {
-            return false;
-        }
-        if (day == 29 && (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0))) {
-            return false;
-        }
-    }
-    for (int i = 0; i < 10; ++i) {
-        if (i == 4 || i == 7) {
-            continue;
-        }
-        if (!std::isdigit(dateStr[i])) {
-            return false;
-        }
-    }
-    return true;
-}
-
-std::string formatDouble(double value) {
-    std::ostringstream oss;
-    oss << std::fixed << std::setprecision(3) << value;
-    std::string formatted = oss.str();
-
-    while (!formatted.empty() && (formatted[formatted.size() - 1] == '0' || formatted[formatted.size() - 1] == '.')) {
-        formatted.erase(formatted.size() - 1);
-    }
-
-    return formatted;
-}
-
-bool isValidInput(const std::string& input) {
-    int dotCount = 0;
-    int pipeCount = 0;
-    int dashCount = 0;
-    int spaceCount = 0;
-    
-    for (size_t i = 0; i < input.size(); i++) {
-        if (input[i] == '.') {
-            dotCount++;
-            if (dotCount > 1) {
-                return false;
-            }
-        } else if (input[i] == '|') {
-            pipeCount++;
-            if (pipeCount > 1) {
-                return false;
-            }
-        } else if (input[i] == ' ') {
-            spaceCount++;
-            if (spaceCount > 2) {
-                return false;
-            }
-        } else if ( i < 10 && input[i] == '-') {
-            dashCount++;
-            if (dashCount > 2) {
-                return false;
-            }
-        } else if (!isdigit(input[i]) && input[i] != ' ' && input[i] != '+'  && input[i] != '-') {
-            return false;
-        }
-    }
-
-    return true;
-}
-
-
 int main(int argc, char* argv[]) {
     try {
         if (argc != 2) {
@@ -115,7 +31,7 @@ int main(int argc, char* argv[]) {
         }
         while (std::getline(inputFile, line)) {
             try {
-                if (line.empty() || line == "" || line.find("|") == std::string::npos || !isValidInput(line)) {
+                if (line.empty() || line == "" || line.find("|") == std::string::npos || !exchange.isValidInput(line)) {
                     std::cout << "Error: bad input => " <<  line << std::endl;
                     continue;
                 }
@@ -155,7 +71,7 @@ int main(int argc, char* argv[]) {
                     continue;
                 }
 
-                if (!isDateValid(dateStr)) {
+                if (!exchange.isDateValid(dateStr)) {
                     std::cout << "Error: bad input => " << dateStr << std::endl;
                     continue;
                 }
@@ -166,8 +82,8 @@ int main(int argc, char* argv[]) {
                 }
                 if (exchangeRate >= 0)
                 {
-                std::cout << dateStr << " => " << std::fixed  << formatDouble(value);
-                std::cout << " = " << std::fixed  << formatDouble(exchangeRate * value) << std::endl;
+                std::cout << dateStr << " => " << std::fixed  << exchange.formatDouble(value);
+                std::cout << " = " << std::fixed  << exchange.formatDouble(exchangeRate * value) << std::endl;
                 }
             } catch (const std::exception& e) {
                 std::cout << "Error: " << e.what() << std::endl;
