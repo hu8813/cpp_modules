@@ -12,6 +12,11 @@ class BitcoinExchange
 {
 public:
     BitcoinExchange();
+    ~BitcoinExchange();
+
+    BitcoinExchange(const BitcoinExchange &other);
+    BitcoinExchange &operator=(const BitcoinExchange &other);
+
     bool loadPrices(const std::string &filename);
     double getPriceForDate(const std::string &date) const;
     bool isDateValid(std::string &dateStr);

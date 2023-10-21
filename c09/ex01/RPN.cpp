@@ -13,10 +13,30 @@ RPN::RPN(const RPN &other)
     *this = other;
 }
 
-RPN &RPN::operator=(const RPN &)
+RPN &RPN::operator=(const RPN &other)
 {
+    if (this != &other) {
+        std::stack<double> tmp;
+
+        std::stack<double> otherCopy = other.values;
+        while (!otherCopy.empty()) {
+            tmp.push(otherCopy.top());
+            otherCopy.pop();
+        }
+
+        while (!values.empty()) {
+            values.pop();
+        }
+
+        while (!tmp.empty()) {
+            values.push(tmp.top());
+            tmp.pop();
+        }
+    }
+
     return *this;
 }
+
 
 double RPN::evaluate(const std::string &expression)
 {

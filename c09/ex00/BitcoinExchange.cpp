@@ -2,6 +2,25 @@
 
 BitcoinExchange::BitcoinExchange() {}
 
+BitcoinExchange::~BitcoinExchange() {}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &other)
+{
+    *this = other;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &other) {
+    if (this != &other) {
+        btcPrices.clear();
+
+        for (std::map<std::string, double>::const_iterator it = other.btcPrices.begin(); it != other.btcPrices.end(); ++it) {
+            btcPrices[it->first] = it->second;
+        }
+    }
+    
+    return *this;
+}
+
 bool BitcoinExchange::isValidInput(const std::string &input)
 {
     int dotCount = 0;
