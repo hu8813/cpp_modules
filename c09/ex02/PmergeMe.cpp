@@ -75,7 +75,7 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec
     return true;
 }
 
-bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::list<int> &lst)
+bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::deque<int> &deq)
 {
     std::string args;
     for (int i = 1; i < argc; i++)
@@ -116,15 +116,15 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::list<int> &lst)
             return false;
         }
 
-        if (std::find(lst.begin(), lst.end(), num) != lst.end())
+        if (std::find(deq.begin(), deq.end(), num) != deq.end())
         {
             std::cerr << "Error:\nDuplicate number found." << std::endl;
             return false;
         }
 
-        lst.push_back(num);
+        deq.push_back(num);
     }
-    if (lst.size() < 2)
+    if (deq.size() < 2)
     {
         std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
         return false;
@@ -132,76 +132,99 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::list<int> &lst)
     return true;
 }
 
-void PmergeMe::mergeInsertSort(std::vector<int> &vec)
-{
-    if (vec.size() < 2)
-        return;
+void PmergeMe::mergeInsertSort(std::vector<int>& vec) {
+    if (vec.size() <= 1) return;
 
-    for (size_t i = 1; i < vec.size(); i += 2)
-    {
-        if (vec[i] < vec[i - 1])
-        {
-            std::swap(vec[i], vec[i - 1]);
+    for (int it = 1; it < static_cast<int>(vec.size()); it += 2) {
+        if (vec[it] < vec[it - 1]) {
+            std::swap(vec[it], vec[it - 1]);
         }
     }
 
-    for (int i = 1; i < static_cast<int>(vec.size()); ++i)
-    {
-        int tmp = vec[i];
+    std::vector<int> sorted;
+    for (int i = 1; i < static_cast<int>(vec.size()); ++i) {
+        int key = vec[i];
         int j = i - 1;
-        while (j >= 0 && vec[j] > tmp)
-        {
+        while (j >= 0 && vec[j] > key) {
             vec[j + 1] = vec[j];
             --j;
         }
-        vec[j + 1] = tmp;
+        vec[j + 1] = key;
+    }
+
+    sorted.push_back(vec[0]);
+
+    for (int i = 1; i < static_cast<int>(vec.size()); ++i) {
+        int key = vec[i];
+
+        int left = 0;
+        int right = static_cast<int>(sorted.size()) - 1;
+        int insertIndex = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (sorted[mid] < key) {
+                insertIndex = mid + 1;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        sorted.insert(sorted.begin() + insertIndex, key);
+    }
+
+    for (int i = 0; i < static_cast<int>(vec.size()); ++i) {
+        vec[i] = sorted[i];
     }
 }
 
-void PmergeMe::mergeInsertSort(std::list<int> &lst)
-{
-    if (lst.size() < 2)
-        return;
+void PmergeMe::mergeInsertSort(std::deque<int>& deq) {
+    if (deq.size() <= 1) return;
 
-    std::list<int>::iterator it = lst.begin();
-    std::advance(it, 1);
-    for (; it != lst.end(); ++it)
-    {
-        std::list<int>::iterator prev = it;
-        --prev;
-        if (*it < *prev)
-        {
-            std::swap(*it, *prev);
+    for (int it = 1; it < static_cast<int>(deq.size()); it += 2) {
+        if (deq[it] < deq[it - 1]) {
+            std::swap(deq[it], deq[it - 1]);
         }
     }
 
-    it = lst.begin();
-    std::advance(it, 1);
-    for (; it != lst.end(); ++it)
-    {
-        int key = *it;
-        std::list<int>::iterator j = it;
-        --j;
-        std::list<int>::iterator start = lst.begin();
-        while (j != start && *j > key)
-        {
-            std::list<int>::iterator nextJ = j;
-            ++nextJ;
-            *nextJ = *j;
+    std::deque<int> sorted;
+    for (int i = 1; i < static_cast<int>(deq.size()); ++i) {
+        int key = deq[i];
+        int j = i - 1;
+        while (j >= 0 && deq[j] > key) {
+            deq[j + 1] = deq[j];
             --j;
         }
-        if (j == start && *j > key)
-        {
-            std::list<int>::iterator nextJ = j;
-            ++nextJ;
-            *nextJ = *j;
-            *j = key;
+        deq[j + 1] = key;
+    }
+
+    sorted.push_back(deq[0]);
+
+    for (int i = 1; i < static_cast<int>(deq.size()); ++i) {
+        int key = deq[i];
+
+        int left = 0;
+        int right = static_cast<int>(sorted.size()) - 1;
+        int insertIndex = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (sorted[mid] < key) {
+                insertIndex = mid + 1;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
         }
-        else
-        {
-            std::list<int>::iterator nextJ = j;
-            ++nextJ;
-            *nextJ = key;
-        }
+
+        sorted.insert(sorted.begin() + insertIndex, key);
+    }
+
+    for (int i = 0; i < static_cast<int>(deq.size()); ++i) {
+        deq[i] = sorted[i];
     }
 }
+
+
+

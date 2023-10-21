@@ -7,7 +7,8 @@
 #include <sstream>
 #include <ctime>
 #include <cctype>
-#include <set>
+#include <deque>
+#include <vector>
 #include <algorithm>
 
 class PmergeMe
@@ -20,9 +21,9 @@ public:
     PmergeMe &operator=(const PmergeMe &);
 
     bool parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec);
-    bool parseAndStoreNumbers(int argc, char **argv, std::list<int> &lst);
+    bool parseAndStoreNumbers(int argc, char **argv, std::deque<int> &deq);
     void mergeInsertSort(std::vector<int> &vec);
-    void mergeInsertSort(std::list<int> &lst);
+    void mergeInsertSort(std::deque<int> &deq);
 
 private:
 };

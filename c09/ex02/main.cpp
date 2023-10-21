@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
     PmergeMe pmergeMe;
 
-    // Sorting and data management with a vector
+    // with a vector
     clock_t startSortVec = clock();
 
     std::vector<int> vec;
@@ -31,34 +31,34 @@ int main(int argc, char *argv[])
 
     clock_t endSortVec = clock();
 
-    // Sorting with a list
-    clock_t startSortLst = clock();
+    // with a deque
+    clock_t startSortDeq = clock();
 
-    std::list<int> lst;
-    if (!pmergeMe.parseAndStoreNumbers(argc, argv, lst))
+    std::deque<int> deq;
+    if (!pmergeMe.parseAndStoreNumbers(argc, argv, deq))
     {
         return 1;
     }
 
-    pmergeMe.mergeInsertSort(lst);
+    pmergeMe.mergeInsertSort(deq);
     std::cout << "After: ";
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
+    for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
     {
         std::cout << *it << " ";
     }
     std::cout << std::endl;
 
-    clock_t endSortLst = clock();
+    clock_t endSortDeq = clock();
+
+    double timeSortDeq = (double)(endSortDeq - startSortDeq) / CLOCKS_PER_SEC;
 
     double timeSortVec = (double)(endSortVec - startSortVec) / CLOCKS_PER_SEC;
 
-    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : "
-              << std::fixed << std::setprecision(5) << timeSortVec << " us" << std::endl;
-
-    double timeSortLst = (double)(endSortLst - startSortLst) / CLOCKS_PER_SEC;
-
-    std::cout << "Time to process a range of " << lst.size() << " elements with std::list : "
-              << std::fixed << std::setprecision(5) << timeSortLst << " us" << std::endl;
+    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
+            << std::fixed << std::setprecision(5) << timeSortVec << " us" << std::endl;
+            
+    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: "
+            << std::fixed << std::setprecision(5) << timeSortDeq << " us" << std::endl;
 
     return 0;
 }
