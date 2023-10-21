@@ -17,7 +17,7 @@ public:
     ~PmergeMe();
     
     PmergeMe(const PmergeMe &other);
-    PmergeMe &operator=(const PmergeMe &other);
+    PmergeMe &operator=(const PmergeMe &);
 
     void mergeInsertSort(std::vector<int> &vec);
     void mergeInsertSort(std::list<int> &lst);

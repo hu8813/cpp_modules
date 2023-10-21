@@ -13,7 +13,7 @@ PmergeMe::PmergeMe(const PmergeMe &other)
     *this = other;
 }
 
-PmergeMe &PmergeMe::operator=(const PmergeMe &other)
+PmergeMe &PmergeMe::operator=(const PmergeMe &)
 {
     return *this;
 }
