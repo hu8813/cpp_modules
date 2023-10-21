@@ -1,6 +1,128 @@
 #include "PmergeMe.hpp"
 
-void mergeInsertSort(std::vector<int> &vec)
+PmergeMe::PmergeMe()
+{
+}
+
+PmergeMe::~PmergeMe()
+{
+}
+
+bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec)
+{
+    std::string args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (i == 1)
+            args = argv[1];
+        else
+            args = args + " " + argv[i];
+    }
+    int j = 0;
+
+    while (args[j] != '\0')
+    {
+        if ((!(isdigit(args[j])) && (args[j] != ' ') && (args[j] != '+' && args[j] != ' ')) || (args[j] == '-') || (args[j] == '+' && args[j + 1] == '\0') || (args[j] == '+' && args[j + 1] == ' '))
+        {
+            std::cerr << "Error\n";
+            return false;
+        }
+        j++;
+    }
+
+    int num;
+    std::istringstream iss(args);
+    while (!iss.eof() && iss.good())
+    {
+        try
+        {
+            if (!(iss >> num))
+            {
+                std::cerr << "Error: Invalid number format." << std::endl;
+                return false;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Error:\n"
+                      << e.what() << std::endl;
+            return false;
+        }
+
+        if (std::find(vec.begin(), vec.end(), num) != vec.end())
+        {
+            std::cerr << "Error:\nDuplicate number found." << std::endl;
+            return false;
+        }
+
+        vec.push_back(num);
+    }
+    if (vec.size() < 2)
+    {
+        std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::list<int> &lst)
+{
+    std::string args;
+    for (int i = 1; i < argc; i++)
+    {
+        if (i == 1)
+            args = argv[1];
+        else
+            args = args + " " + argv[i];
+    }
+    int j = 0;
+
+    while (args[j] != '\0')
+    {
+        if ((!(isdigit(args[j])) && (args[j] != ' ') && (args[j] != '+' && args[j] != ' ')) || (args[j] == '-') || (args[j] == '+' && args[j + 1] == '\0') || (args[j] == '+' && args[j + 1] == ' '))
+        {
+            std::cerr << "Error\n";
+            return false;
+        }
+        j++;
+    }
+
+    int num;
+    std::istringstream iss(args);
+    while (!iss.eof() && iss.good())
+    {
+        try
+        {
+            if (!(iss >> num))
+            {
+                std::cerr << "Error: Invalid number format." << std::endl;
+                return false;
+            }
+        }
+        catch (const std::exception &e)
+        {
+            std::cerr << "Error:\n"
+                      << e.what() << std::endl;
+            return false;
+        }
+
+        if (std::find(lst.begin(), lst.end(), num) != lst.end())
+        {
+            std::cerr << "Error:\nDuplicate number found." << std::endl;
+            return false;
+        }
+
+        lst.push_back(num);
+    }
+    if (lst.size() < 2)
+    {
+        std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+void PmergeMe::mergeInsertSort(std::vector<int> &vec)
 {
     if (vec.size() < 2)
         return;
@@ -26,7 +148,7 @@ void mergeInsertSort(std::vector<int> &vec)
     }
 }
 
-void mergeInsertSort(std::list<int> &lst)
+void PmergeMe::mergeInsertSort(std::list<int> &lst)
 {
     if (lst.size() < 2)
         return;

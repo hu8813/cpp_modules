@@ -10,6 +10,16 @@
 #include <set>
 #include <algorithm>
 
-void mergeInsertSort(std::vector<int> &vec);
+class PmergeMe
+{
+public:
+    PmergeMe();
+    ~PmergeMe();
 
-void mergeInsertSort(std::list<int> &lst);
+    void mergeInsertSort(std::vector<int> &vec);
+    void mergeInsertSort(std::list<int> &lst);
+    bool parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec);
+    bool parseAndStoreNumbers(int argc, char **argv, std::list<int> &lst);
+
+private:
+};
