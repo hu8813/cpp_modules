@@ -81,6 +81,8 @@ std::string BitcoinExchange::formatDouble(double value)
     {
         formatted.erase(formatted.size() - 1);
     }
+    if (formatted.empty())
+        formatted = "0";
 
     return formatted;
 }
@@ -99,7 +101,7 @@ bool BitcoinExchange::isDateValid(std::string &dateStr)
     std::istringstream(dateStr.substr(0, 4)) >> year;
     std::istringstream(dateStr.substr(5, 2)) >> month;
     std::istringstream(dateStr.substr(8, 2)) >> day;
-    if (month < 1 || month > 12 || day < 1 || day > 31 || year < 2000)
+    if (month < 1 || month > 12 || day < 1 || day > 31 || year < 1970 || year > 2050)
     {
         return false;
     }
@@ -183,10 +185,13 @@ bool BitcoinExchange::loadPrices(const std::string &filename)
 double BitcoinExchange::getPriceForDate(const std::string &date) const
 {
     std::map<std::string, double>::const_iterator it = btcPrices.find(date);
-    if (date < btcPrices.begin()->first || date > btcPrices.rbegin()->first)
+    if (date < btcPrices.begin()->first)
     {
-        std::cout << "Error: date out of range. => " << date << std::endl;
-        return -1;
+        return btcPrices.begin()->second;
+    }
+    else if (date > btcPrices.rbegin()->first)
+    {
+        return btcPrices.rbegin()->second;
     }
     if (it == btcPrices.end())
     {
