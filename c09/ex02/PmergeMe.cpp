@@ -160,129 +160,97 @@ bool PmergeMe::parseAndStoreNumbersInDeq(int argc, char **argv)
     return true;
 }
 
-void PmergeMe::mergeInsertSortVec()
-{
+
+void PmergeMe::mergeInsertSortVec() {
     if (_vec.size() <= 1) return;
 
-    for (int i = 0; i < static_cast<int>(_vec.size()); i++)
-    {
-        if (i % 2 == 1 && _vec[i] < _vec[i - 1])
-        {
-            std::swap(_vec[i], _vec[i - 1]);
+    for (int it = 1; it < static_cast<int>(_vec.size()); it += 2) {
+        if (_vec[it] < _vec[it - 1]) {
+            std::swap(_vec[it], _vec[it - 1]);
         }
     }
 
-    std::vector<int> vecFirstElements;
-    std::vector<int> vecSecondElements;
-
-    for (int i = 0; i < static_cast<int>(_vec.size()); i++)
-    {
-        if (i % 2 == 0)
-        {
-            vecFirstElements.push_back(_vec[i]);
-        }
-        else
-        {
-            vecSecondElements.push_back(_vec[i]);
-        }
-    }
-
-    for (int i = 1; i < static_cast<int>(vecFirstElements.size()); ++i)
-    {
-        int key = vecFirstElements[i];
+    std::vector<int> sorted;
+    for (int i = 1; i < static_cast<int>(_vec.size()); ++i) {
+        int key = _vec[i];
         int j = i - 1;
-        while (j >= 0 && vecFirstElements[j] > key)
-        {
-            vecFirstElements[j + 1] = vecFirstElements[j];
+        while (j >= 0 && _vec[j] > key) {
+            _vec[j + 1] = _vec[j];
             --j;
         }
-        vecFirstElements[j + 1] = key;
+        _vec[j + 1] = key;
     }
 
-    for (int i = 0; i < static_cast<int>(vecSecondElements.size()); i++)
-    {
-        const int key = vecSecondElements[i];
+    sorted.push_back(_vec[0]);
 
-        std::vector<int>::iterator insertPos = std::lower_bound(vecFirstElements.begin(), vecFirstElements.end(), key);
+    for (int i = 1; i < static_cast<int>(_vec.size()); ++i) {
+        int key = _vec[i];
 
-        vecFirstElements.insert(insertPos, key);
+        int left = 0;
+        int right = static_cast<int>(sorted.size()) - 1;
+        int insertIndex = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (sorted[mid] < key) {
+                insertIndex = mid + 1;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        sorted.insert(sorted.begin() + insertIndex, key);
     }
 
-    for (int i = 0; i < static_cast<int>(_vec.size()); i++)
-    {
-        if (i % 2 == 0)
-        {
-            _vec[i] = vecFirstElements[i / 2];
-        }
-        else
-        {
-            _vec[i] = vecSecondElements[i / 2];
-        }
+    for (int i = 0; i < static_cast<int>(_vec.size()); ++i) {
+        _vec[i] = sorted[i];
     }
 }
 
-void PmergeMe::mergeInsertSortDeq()
-{
-    if (_deq.size() <= 1)
-        return;
+void PmergeMe::mergeInsertSortDeq() {
+    if (_deq.size() <= 1) return;
 
-    // Ensure the first element is smaller than the second element in each pair
-    for (int i = 0; i < static_cast<int>(_deq.size()); i++)
-    {
-        if (i % 2 == 1 && _deq[i] < _deq[i - 1])
-        {
-            std::swap(_deq[i], _deq[i - 1]);
+    for (int it = 1; it < static_cast<int>(_deq.size()); it += 2) {
+        if (_deq[it] < _deq[it - 1]) {
+            std::swap(_deq[it], _deq[it - 1]);
         }
     }
 
-    std::deque<int> deqFirstElements;
-    std::deque<int> deqSecondElements;
-
-    for (int i = 0; i < static_cast<int>(_deq.size()); i++)
-    {
-        if (i % 2 == 0)
-        {
-            deqFirstElements.push_back(_deq[i]);
-        }
-        else
-        {
-            deqSecondElements.push_back(_deq[i]);
-        }
-    }
-
-    for (int i = 1; i < static_cast<int>(deqFirstElements.size()); ++i)
-    {
-        int key = deqFirstElements[i];
+    std::deque<int> sorted;
+    for (int i = 1; i < static_cast<int>(_deq.size()); ++i) {
+        int key = _deq[i];
         int j = i - 1;
-        while (j >= 0 && deqFirstElements[j] > key)
-        {
-            deqFirstElements[j + 1] = deqFirstElements[j];
+        while (j >= 0 && _deq[j] > key) {
+            _deq[j + 1] = _deq[j];
             --j;
         }
-        deqFirstElements[j + 1] = key;
+        _deq[j + 1] = key;
     }
 
-    for (int i = 0; i < static_cast<int>(deqSecondElements.size()); i++)
-    {
-        const int key = deqSecondElements[i];
+    sorted.push_back(_deq[0]);
 
-        std::deque<int>::iterator insertPos = std::lower_bound(deqFirstElements.begin(), deqFirstElements.end(), key);
+    for (int i = 1; i < static_cast<int>(_deq.size()); ++i) {
+        int key = _deq[i];
 
-        deqFirstElements.insert(insertPos, key);
+        int left = 0;
+        int right = static_cast<int>(sorted.size()) - 1;
+        int insertIndex = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (sorted[mid] < key) {
+                insertIndex = mid + 1;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        sorted.insert(sorted.begin() + insertIndex, key);
     }
 
-    for (int i = 0; i < static_cast<int>(_deq.size()); i++)
-    {
-        if (i % 2 == 0)
-        {
-            _deq[i] = deqFirstElements[i / 2];
-        }
-        else
-        {
-            _deq[i] = deqSecondElements[i / 2];
-        }
+    for (int i = 0; i < static_cast<int>(_deq.size()); ++i) {
+        _deq[i] = sorted[i];
     }
 }
-
-
-

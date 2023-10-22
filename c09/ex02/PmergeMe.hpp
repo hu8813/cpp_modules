@@ -31,4 +31,3 @@ private:
     std::vector<int> _vec;
     std::deque<int> _deq;
 };
-
