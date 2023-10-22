@@ -13,19 +13,16 @@ int main(int argc, char *argv[])
     // with a vector
     clock_t startSortVec = clock();
 
-    std::vector<int> vec;
-    if (!pmergeMe.parseAndStoreNumbers(argc, argv, vec))
+    if (!pmergeMe.parseAndStoreNumbersInVec(argc, argv))
     {
         return 1;
     }
 
     std::cout << "Before: ";
-    for (std::vector<int>::iterator it = vec.begin(); it != vec.end(); ++it)
-    {
-        std::cout << *it << " ";
-    }
 
-    pmergeMe.mergeInsertSort(vec);
+    pmergeMe.printNumbersInVec();
+
+    pmergeMe.mergeInsertSortVec();
 
     std::cout << std::endl;
 
@@ -34,18 +31,14 @@ int main(int argc, char *argv[])
     // with a deque
     clock_t startSortDeq = clock();
 
-    std::deque<int> deq;
-    if (!pmergeMe.parseAndStoreNumbers(argc, argv, deq))
+    if (!pmergeMe.parseAndStoreNumbersInDeq(argc, argv))
     {
         return 1;
     }
 
-    pmergeMe.mergeInsertSort(deq);
+    pmergeMe.mergeInsertSortDeq();
     std::cout << "After: ";
-    for (std::deque<int>::iterator it = deq.begin(); it != deq.end(); ++it)
-    {
-        std::cout << *it << " ";
-    }
+    pmergeMe.printNumbersInDeq();
     std::cout << std::endl;
 
     clock_t endSortDeq = clock();
@@ -54,10 +47,10 @@ int main(int argc, char *argv[])
 
     double timeSortVec = (double)(endSortVec - startSortVec) / CLOCKS_PER_SEC;
 
-    std::cout << "Time to process a range of " << vec.size() << " elements with std::vector: "
+    std::cout << "Time to process a range of " << pmergeMe.getVecSize() << " elements with std::vector: "
             << std::fixed << std::setprecision(5) << timeSortVec << " us" << std::endl;
             
-    std::cout << "Time to process a range of " << deq.size() << " elements with std::deque: "
+    std::cout << "Time to process a range of " << pmergeMe.getDeqSize() << " elements with std::deque: "
             << std::fixed << std::setprecision(5) << timeSortDeq << " us" << std::endl;
 
     return 0;

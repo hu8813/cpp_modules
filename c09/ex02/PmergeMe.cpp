@@ -8,6 +8,8 @@ PmergeMe::~PmergeMe()
 {
 }
 
+
+
 PmergeMe::PmergeMe(const PmergeMe &other)
 {
     *this = other;
@@ -18,7 +20,33 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &)
     return *this;
 }
 
-bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec)
+void PmergeMe::printNumbersInVec()
+{
+    for (std::vector<int>::iterator it = _vec.begin(); it != _vec.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+}
+
+void PmergeMe::printNumbersInDeq()
+{
+    for (std::deque<int>::iterator it = _deq.begin(); it != _deq.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+}
+
+int PmergeMe::getVecSize()
+{
+    return _vec.size();
+}
+
+int PmergeMe::getDeqSize()
+{
+    return _deq.size();
+}
+
+bool PmergeMe::parseAndStoreNumbersInVec(int argc, char **argv)
 {
     std::string args;
     for (int i = 1; i < argc; i++)
@@ -59,15 +87,15 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec
             return false;
         }
 
-        if (std::find(vec.begin(), vec.end(), num) != vec.end())
+        if (std::find(_vec.begin(), _vec.end(), num) != _vec.end())
         {
             std::cerr << "Error:\nDuplicate number found." << std::endl;
             return false;
         }
 
-        vec.push_back(num);
+        _vec.push_back(num);
     }
-    if (vec.size() < 2)
+    if (_vec.size() < 2)
     {
         std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
         return false;
@@ -75,7 +103,7 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::vector<int> &vec
     return true;
 }
 
-bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::deque<int> &deq)
+bool PmergeMe::parseAndStoreNumbersInDeq(int argc, char **argv)
 {
     std::string args;
     for (int i = 1; i < argc; i++)
@@ -116,15 +144,15 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::deque<int> &deq)
             return false;
         }
 
-        if (std::find(deq.begin(), deq.end(), num) != deq.end())
+        if (std::find(_deq.begin(), _deq.end(), num) != _deq.end())
         {
             std::cerr << "Error:\nDuplicate number found." << std::endl;
             return false;
         }
 
-        deq.push_back(num);
+        _deq.push_back(num);
     }
-    if (deq.size() < 2)
+    if (_deq.size() < 2)
     {
         std::cerr << "Error:\nAt least 2 numbers are required as an argument." << std::endl;
         return false;
@@ -132,30 +160,30 @@ bool PmergeMe::parseAndStoreNumbers(int argc, char **argv, std::deque<int> &deq)
     return true;
 }
 
-void PmergeMe::mergeInsertSort(std::vector<int>& vec) {
-    if (vec.size() <= 1) return;
+void PmergeMe::mergeInsertSortVec() {
+    if (_vec.size() <= 1) return;
 
-    for (int it = 1; it < static_cast<int>(vec.size()); it += 2) {
-        if (vec[it] < vec[it - 1]) {
-            std::swap(vec[it], vec[it - 1]);
+    for (int it = 1; it < static_cast<int>(_vec.size()); it += 2) {
+        if (_vec[it] < _vec[it - 1]) {
+            std::swap(_vec[it], _vec[it - 1]);
         }
     }
 
     std::vector<int> sorted;
-    for (int i = 1; i < static_cast<int>(vec.size()); ++i) {
-        int key = vec[i];
+    for (int i = 1; i < static_cast<int>(_vec.size()); ++i) {
+        int key = _vec[i];
         int j = i - 1;
-        while (j >= 0 && vec[j] > key) {
-            vec[j + 1] = vec[j];
+        while (j >= 0 && _vec[j] > key) {
+            _vec[j + 1] = _vec[j];
             --j;
         }
-        vec[j + 1] = key;
+        _vec[j + 1] = key;
     }
 
-    sorted.push_back(vec[0]);
+    sorted.push_back(_vec[0]);
 
-    for (int i = 1; i < static_cast<int>(vec.size()); ++i) {
-        int key = vec[i];
+    for (int i = 1; i < static_cast<int>(_vec.size()); ++i) {
+        int key = _vec[i];
 
         int left = 0;
         int right = static_cast<int>(sorted.size()) - 1;
@@ -174,35 +202,35 @@ void PmergeMe::mergeInsertSort(std::vector<int>& vec) {
         sorted.insert(sorted.begin() + insertIndex, key);
     }
 
-    for (int i = 0; i < static_cast<int>(vec.size()); ++i) {
-        vec[i] = sorted[i];
+    for (int i = 0; i < static_cast<int>(_vec.size()); ++i) {
+        _vec[i] = sorted[i];
     }
 }
 
-void PmergeMe::mergeInsertSort(std::deque<int>& deq) {
-    if (deq.size() <= 1) return;
+void PmergeMe::mergeInsertSortDeq() {
+    if (_deq.size() <= 1) return;
 
-    for (int it = 1; it < static_cast<int>(deq.size()); it += 2) {
-        if (deq[it] < deq[it - 1]) {
-            std::swap(deq[it], deq[it - 1]);
+    for (int it = 1; it < static_cast<int>(_deq.size()); it += 2) {
+        if (_deq[it] < _deq[it - 1]) {
+            std::swap(_deq[it], _deq[it - 1]);
         }
     }
 
     std::deque<int> sorted;
-    for (int i = 1; i < static_cast<int>(deq.size()); ++i) {
-        int key = deq[i];
+    for (int i = 1; i < static_cast<int>(_deq.size()); ++i) {
+        int key = _deq[i];
         int j = i - 1;
-        while (j >= 0 && deq[j] > key) {
-            deq[j + 1] = deq[j];
+        while (j >= 0 && _deq[j] > key) {
+            _deq[j + 1] = _deq[j];
             --j;
         }
-        deq[j + 1] = key;
+        _deq[j + 1] = key;
     }
 
-    sorted.push_back(deq[0]);
+    sorted.push_back(_deq[0]);
 
-    for (int i = 1; i < static_cast<int>(deq.size()); ++i) {
-        int key = deq[i];
+    for (int i = 1; i < static_cast<int>(_deq.size()); ++i) {
+        int key = _deq[i];
 
         int left = 0;
         int right = static_cast<int>(sorted.size()) - 1;
@@ -221,8 +249,8 @@ void PmergeMe::mergeInsertSort(std::deque<int>& deq) {
         sorted.insert(sorted.begin() + insertIndex, key);
     }
 
-    for (int i = 0; i < static_cast<int>(deq.size()); ++i) {
-        deq[i] = sorted[i];
+    for (int i = 0; i < static_cast<int>(_deq.size()); ++i) {
+        _deq[i] = sorted[i];
     }
 }
 
