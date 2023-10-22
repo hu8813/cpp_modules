@@ -208,7 +208,7 @@ void PmergeMe::mergeInsertSortVec()
         vecFirstElements.insert(insertPos, key);
     }
     
-    for (int i= 0; i < (int)vecFirstElements.size(); i++)
+    for (int i= 0; i < static_cast<int>(vecFirstElements.size()); i++)
     {
         _vec[i] = vecFirstElements[i];
     }
@@ -263,7 +263,7 @@ void PmergeMe::mergeInsertSortDeq()
         deqFirstElements.insert(insertPos, key);
     }
 
-    for (int i= 0; i < (int)deqFirstElements.size(); i++)
+    for (int i= 0; i < static_cast<int>(deqFirstElements.size()); i++)
     {
         _deq[i] = deqFirstElements[i];
     }
