@@ -41,17 +41,20 @@ void identify(Base *p)
 
 void identify(Base &p) {
     try {
-        if (dynamic_cast<A*>(&p)) {
-            std::cout << "Type of reference is:\t A" << std::endl;
-        } else if (dynamic_cast<B*>(&p)) {
+        dynamic_cast<A&>(p);
+        std::cout << "Type of reference is:\t A" << std::endl;
+    } catch (std::exception &) {
+        try {
+            dynamic_cast<B&>(p);
             std::cout << "Type of reference is:\t B" << std::endl;
-        } else if (dynamic_cast<C*>(&p)) {
-            std::cout << "Type of reference is:\t C" << std::endl;
-        } else {
-            std::cout << "Unknown reference Type" << std::endl;
+        } catch (std::exception &) {
+            try {
+                dynamic_cast<C&>(p);
+                std::cout << "Type of reference is:\t C" << std::endl;
+            } catch (std::exception &) {
+                std::cout << "Unknown reference Type" << std::endl;
+            }
         }
-    } catch (std::exception& e) {
-        std::cout << "Exception: Unable to cast the reference to the desired type." << std::endl;
     }
 }
 
@@ -62,9 +65,11 @@ int main()
         for (int i=0; i<5; i++)
         {
             Base *base = generate();
+            Base &ref = *base;
             try {
                 identify(base);
                 identify(*base);
+                identify(&ref);
             } catch (std::exception& e) {
                 std::cerr << "Exception caught: " << e.what() << std::endl;
             }
