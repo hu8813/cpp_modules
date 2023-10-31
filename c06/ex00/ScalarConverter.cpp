@@ -5,7 +5,8 @@
 
 ScalarConverter::ScalarConverter() {}
 
-ScalarConverter::~ScalarConverter() {
+ScalarConverter::~ScalarConverter()
+{
     std::cout << "Destructor called" << std::endl;
 }
 
@@ -48,23 +49,38 @@ void ScalarConverter::convert(std::string _str)
     // Try to convert to char
     try
     {
-        std::istringstream iss(_str);
-        int i;
-        iss >> i;
-        if (iss.fail() || i < 0 || i > 127)
+        if (_str.length() == 1)
         {
-            std::cout << "char: impossible" << std::endl; // Conversion failed or outside the valid range
-        }
-        else
-        {
-            std::cout << "char: ";
-            if (i < 32 || i > 126)
+            char c = _str[0];
+            if (c < 32 || c > 126)
             {
-                std::cout << "non-displayable" << std::endl; // Non-printable but valid
+                std::cout << "char: non-displayable" << std::endl;
             }
             else
             {
-                std::cout << static_cast<char>(i) << std::endl; // Printable
+                std::cout << "char: " << c << std::endl;
+            }
+        }
+        else
+        {
+            std::istringstream iss(_str);
+            int i;
+            iss >> i;
+            if (iss.fail() || i < 0 || i > 127)
+            {
+                std::cout << "char: impossible" << std::endl;
+            }
+            else
+            {
+                std::cout << "char: ";
+                if (i < 32 || i > 126)
+                {
+                    std::cout << "non-displayable" << std::endl;
+                }
+                else
+                {
+                    std::cout << static_cast<char>(i) << std::endl;
+                }
             }
         }
     }
@@ -76,21 +92,29 @@ void ScalarConverter::convert(std::string _str)
     // Try to convert to int
     try
     {
-        std::istringstream iss(_str);
-        int i;
-        iss >> i;
-        if (iss.fail())
+        if (_str.length() == 1)
         {
-            std::cout << "int: impossible" << std::endl; // Conversion failed
+            char c = _str[0];
+            std::cout << "int: " << static_cast<int>(c) << std::endl;
         }
         else
         {
-            std::cout << "int: " << i << std::endl; // Successful conversion
+            std::istringstream iss(_str);
+            int i;
+            iss >> i;
+            if (iss.fail())
+            {
+                std::cout << "int: impossible" << std::endl;
+            }
+            else
+            {
+                std::cout << "int: " << i << std::endl;
+            }
         }
     }
     catch (const std::exception &e)
     {
-        std::cout << "int: impossible" << std::endl; // Exception occurred
+        std::cout << "int: impossible" << std::endl;
     }
 
     // Try to convert to float
